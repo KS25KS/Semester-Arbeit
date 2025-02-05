@@ -38,3 +38,10 @@ li a:hover:not(.active) {
 .active {
     background-color: white;
 }
+h1 {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-family: sans-serif, Arial, Helvetica;
+    color: #f7b016;
+  }
