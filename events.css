@@ -1,0 +1,57 @@
+.about-section {
+    background: rgba(26, 95, 122, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.about-section:hover {
+    transform: translateY(-5px);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.about-section h2 {
+    color: #f7b016;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Interests Grid */
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.interest-item {
+    padding: 1rem;
+    background: #f7b016;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.interest-item:hover {
+    background: #1a5f7a4d;
+}
+
+.interest-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: black;
+    text-decoration: none;
+    
+}
