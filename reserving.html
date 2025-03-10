@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanav.S Webseite</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reserving.css">
 </head>
 <body>
     <nav class="navbar">
@@ -23,4 +24,59 @@
             <h2 style="float:left" style="font-size: 18px;">Peri-Peri Kitchen!</h2>
         </ul>
     </nav>
+
+    <section class="experience-header">
+        <h1 style="font-size: 25px;">Reservieren Sie einen Tisch!</h1>
+    </section>
+    <main>
+        <form class="reserving-form" id="reservedForm">
+            <div class="form-group">
+                <label for="name">Name (Name, Vorname):</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+           <div class="form-group">
+            <label for="telefon">Telefonnummer:</label>
+            <input type="text" id="telefon" name="telefon" required>
+           </div>
+
+           <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+           </div>
+
+           <label for="start">
+            Datum:
+        </label>
+    
+        <input type="date" name="begin" 
+               placeholder="dd-mm-yyyy" value="" 
+               min="2000-01-01" max="2050-12-31">
+
+
+               <form action="/action_page.php">
+                <label for="quantity">Anzahl:</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="12">
+            
+
+           <div class="form-group">
+            <label for="subject">Betreff:</label>
+            <input type="text" id="subject" name="subject" required>
+           </div>
+
+           <div class="form-group">
+            <label for="message">Bemerkungen:</label>
+            <textarea id="message" name="message" required></textarea>
+           </div>
+               
+
+           <button type="submit">Nachricht Absenden</button>
+           <div class="loading">Nachricht wird gesendet...</div>
+           <div class="success-message">Ihre Nachricht wurde erfolgreich gesendet!</div>
+           <div class="error-message">Nachricht konnte nicht ausgestellt werden. Bitte versuchen Sie es nochmals!</div>
+        </form>
+    </main>
+    
+    <script src="reserving.js"></script>
+
 </body>
