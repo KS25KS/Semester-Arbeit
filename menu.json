@@ -1,0 +1,8 @@
+{
+    "name": "Spicy Chicken Burger",
+    "description": "Spicy Chicken Burger mit Peri-Peri Sosse",
+    "price": 9.90,
+    "image": "./images/burger.jpg",
+    "link": "cart.html",
+    "category": "Burgers"
+  }
