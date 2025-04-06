@@ -1,8 +1,59 @@
+[
+  
 {
-    "name": "Spicy Chicken Burger",
-    "description": "Spicy Chicken Burger mit Peri-Peri Sosse",
-    "price": 9.90,
+  "name": "Spicy Chicken Burger",
+    "description": "Spicy Chicken Burger mit Peri-Peri Sosse.",
+    "price": 8.50,
     "image": "./images/burger.jpg",
     "link": "cart.html",
     "category": "Burgers"
-  }
+},
+
+{
+  "name": "Peri Bites",
+  "description": "Crispy Chilli Cheese Jalapeño Poppers: fritierte scharfe Käse Jalapeños oder mit anderen Füllungen.",
+  "price": 11.50,
+  "image":"./images/jalapeno.jpg",
+  "link":"cart.html",
+  "category": "Sides"
+},
+
+{
+  "name": "Crispy Fried Shrimp",
+  "description": "fritierte knusprige Garnelen.",
+  "price": 15.50,
+  "image":"./images/shrimp.jpg",
+  "link":"cart.html",
+  "category": "Seafood"
+},
+
+{
+  "name": "Tortilla Chips",
+  "description": "Tortilla Chips mit grosser auswahl von Toppings, wie Käse, Tomaten, Zwiebeln, Oliven, Salsa, Chilli, unsw.",
+  "price": 12.50,
+  "image": "./images/tortilla.jpg",
+  "link":"cart.html",
+  "category": "Main dish"
+},
+
+{
+  "name": "Spicy Chicken Wings",
+  "description": "Marinierte Chicken Wings in Hausgemachte Peri-Peri Sosse",
+  "price": 10.50,
+  "image": "./images/wings.jpg",
+  "link":"cart.html",
+  "category": "Sides"
+},
+
+{
+  "name": "Fish 'n' Chips",
+  "description": "Knusprig frittierter Fisch im Teig, serviert mit goldenen Pommes und einer Zitronenscheibe.",
+  "price": 15.50,
+  "image": "./images/fishnchips.jpg",
+  "link":"cart.html",
+  "category": "Seafood"
+}
+
+
+
+]
