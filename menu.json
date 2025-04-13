@@ -52,6 +52,15 @@
   "image": "./images/fishnchips.jpg",
   "link":"cart.html",
   "category": "Seafood"
+},
+
+{
+  "name": "Potato Chips",
+  "description": "Kartoffelchips in verschiedenen Geschmackssorten.",
+  "price": 5.50,
+  "image": "./images/crisps.jpg",
+  "link":"cart.html",
+  "category":"Sides"
 }
 
 
