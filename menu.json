@@ -10,13 +10,23 @@
 },
 
 {
-  "name": "Peri Bites",
-  "description": "Crispy Chilli Cheese Jalapeño Poppers: fritierte scharfe Käse Jalapeños oder mit anderen Füllungen.",
-  "price": 11.50,
-  "image":"./images/jalapeno.jpg",
+  "name": "Crispy Chicken Burger",
+  "description": "Crispy Poulet Hamburger, mit einer ausgewählten Sosse und verschiedenen zutaten. (mild)",
+  "price": 8.00,
+  "image": "./images/cburger.jpg",
   "link":"cart.html",
-  "category": "Sides"
+  "category":"Burgers"
 },
+
+{
+  "name": "Vegi Burger",
+  "description": "Vegitarischer Hamburger, mit einer ausgewählten Sosse und verschiedenen zutaten. ",
+  "price": 7.50,
+  "image": "./images/vegiburger.jpg",
+  "link":"cart.html",
+  "category":"Burgers"
+},
+
 
 {
   "name": "Crispy Fried Shrimp",
@@ -28,12 +38,42 @@
 },
 
 {
+  "name": "Fish 'n' Chips",
+  "description": "Knusprig frittierter Fisch im Teig, serviert mit goldenen Pommes und einer Zitronenscheibe.",
+  "price": 15.50,
+  "image": "./images/fishnchips.jpg",
+  "link":"cart.html",
+  "category": "Seafood"
+},
+
+
+{
   "name": "Tortilla Chips",
   "description": "Tortilla Chips mit grosser auswahl von Toppings, wie Käse, Tomaten, Zwiebeln, Oliven, Salsa, Chilli, unsw.",
   "price": 12.50,
   "image": "./images/tortilla.jpg",
   "link":"cart.html",
-  "category": "Main dish"
+  "category": "Sides"
+},
+
+
+{
+  "name": "Peri Bites",
+  "description": "Crispy Chilli Cheese Jalapeño Poppers: fritierte scharfe Käse Jalapeños oder mit anderen Füllungen.",
+  "price": 11.50,
+  "image":"./images/jalapeno.jpg",
+  "link":"cart.html",
+  "category": "Sides"
+},
+
+
+{
+  "name": "Potato Chips",
+  "description": "Kartoffelchips in verschiedenen Geschmackssorten.",
+  "price": 5.50,
+  "image": "./images/crisps.jpg",
+  "link":"cart.html",
+  "category":"Sides"
 },
 
 {
@@ -45,24 +85,33 @@
   "category": "Sides"
 },
 
+
 {
-  "name": "Fish 'n' Chips",
-  "description": "Knusprig frittierter Fisch im Teig, serviert mit goldenen Pommes und einer Zitronenscheibe.",
-  "price": 15.50,
-  "image": "./images/fishnchips.jpg",
+  "name": "Spicy Rotisserie Chicken",
+  "description": "Scharfes grilliertes Poulet mit Peri Peri Sosse mariniert. Marinade: Rote Zwiebel, geschnitten. gehackte Knoblauchzehen, Paprika und Per-Peri Sosse, Zitrone dabei und schon darauf ausgedrückt",
+  "price": 22.00,
+  "image":"./images/rotisserie.jpg",
   "link":"cart.html",
-  "category": "Seafood"
+  "category":"Main dish"
 },
 
 {
-  "name": "Potato Chips",
-  "description": "Kartoffelchips in verschiedenen Geschmackssorten.",
-  "price": 5.50,
-  "image": "./images/crisps.jpg",
+  "name": "Mild Rotisserie Chicken",
+  "description": "Grilliertes Poulet mit verschiedenen Zutaten mariniert. Marinade: Oliven Öl, Meersalz, Pfeffer, Paprika, Joghurt und andere Gewürze.",
+  "price": 20.00,
+  "image": "./images/mildrotisserie.jpg",
   "link":"cart.html",
-  "category":"Sides"
-}
+  "category":"Main dish"
+},
 
+{
+  "name": "Grilled Chicken Breast with grilled Vegetables.",
+  "description": "Grillierte Hähnchenbrüste mit grillierten Obst und Gemüse. Mariniert in vielen verschiedenen Zutaten wie Oliven Öl, ausgedrückte Zitronen, Meersalz, Pfeffer, Paprika, Joghurt, Peri Peri Sosse und andere Gewürze.",
+  "price": 15.50,
+  "image":"./images/grilledchicken.jpg",
+  "link":"cart.html",
+  "category":"Main dish"
+}
 
 
 ]
