@@ -4,6 +4,8 @@ let menuItems = [];
 function updateCart() {
   const cartItems = document.getElementById('cart-items');
   const totalPrice = document.getElementById('total-price');
+  console.log('Total Price:', total);  // Debug: log the total price
+
   cartItems.innerHTML = '';
 
   let total = 0;
@@ -20,7 +22,7 @@ function updateCart() {
     cartItems.appendChild(div);
   });
 
-totalPrice.textContent = `CHF ${total.toFixed(2)}`;
+  totalPrice.textContent = `CHF ${total.toFixed(2)}`;
   localStorage.setItem('cart', JSON.stringify(cart));
 
   document.querySelectorAll('.remove-btn').forEach(btn => {
@@ -33,7 +35,7 @@ totalPrice.textContent = `CHF ${total.toFixed(2)}`;
 }
 
 function displayMenu(items) {
-  const container = document.getElementById('menu-items'); // 👈 use consistent ID
+  const container = document.getElementById('menu-items'); //  use consistent ID
   container.innerHTML = "";
 
   items.forEach(item => {
@@ -46,6 +48,7 @@ function displayMenu(items) {
     addToCartBtn.textContent = "Zum Warenkorb hinzufügen";
     addToCartBtn.onclick = () => {
       cart.push(item);
+      console.log(cart);  // Log the cart when an item is added
       updateCart();
     };
 
