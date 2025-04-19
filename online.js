@@ -20,7 +20,7 @@ function updateCart() {
     cartItems.appendChild(div);
   });
 
-  totalPrice.textContent = total.toFixed(2);
+totalPrice.textContent = `CHF ${total.toFixed(2)}`;
   localStorage.setItem('cart', JSON.stringify(cart));
 
   document.querySelectorAll('.remove-btn').forEach(btn => {
