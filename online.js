@@ -4,25 +4,29 @@ let menuItems = [];
 function updateCart() {
   const cartItems = document.getElementById('cart-items');
   const totalPrice = document.getElementById('total-price');
-  console.log('Total Price:', total);  // Debug: log the total price
 
-  cartItems.innerHTML = '';
+  if (cartItems && totalPrice) {
+    cartItems.innerHTML = '';
 
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
+    let total = 0;
+    cart.forEach((item, index) => {
+      const quantity = item.quantity || 1;
+      const itemTotal = item.price * quantity;
+      total += itemTotal;
 
-    const div = document.createElement('div');
-    div.className = 'cart-item';
-    div.innerHTML = `
-      ${item.name} - CHF ${item.price.toFixed(2)}
-      <button class="remove-btn" data-index="${index}">Entfernen</button>
-    `;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        ${item.name} x ${quantity} - CHF ${itemTotal.toFixed(2)}
+        <button class="remove-btn" data-index="${index}">Entfernen</button>
+      `;
 
-    cartItems.appendChild(div);
-  });
+      cartItems.appendChild(div);
+    });
 
-  totalPrice.textContent = `CHF ${total.toFixed(2)}`;
+    totalPrice.textContent = `CHF ${total.toFixed(2)}`;
+  }
+
   localStorage.setItem('cart', JSON.stringify(cart));
 
   document.querySelectorAll('.remove-btn').forEach(btn => {
@@ -32,10 +36,12 @@ function updateCart() {
       updateCart();
     });
   });
+
+  console.log('Total Price:', cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0).toFixed(2));
 }
 
 function displayMenu(items) {
-  const container = document.getElementById('menu-items'); //  use consistent ID
+  const container = document.getElementById('menu-items');
   container.innerHTML = "";
 
   items.forEach(item => {
@@ -43,13 +49,20 @@ function displayMenu(items) {
     project.className = 'project';
 
     const addToCartBtn = document.createElement('a');
-    addToCartBtn.href = "#cart";
+    addToCartBtn.href = "#"; // No redirection
     addToCartBtn.className = "project-link";
     addToCartBtn.textContent = "Zum Warenkorb hinzufügen";
-    addToCartBtn.onclick = () => {
-      cart.push(item);
-      console.log(cart);  // Log the cart when an item is added
-      updateCart();
+    addToCartBtn.onclick = (event) => {
+      event.preventDefault();
+      let existingItem = cart.find(cartItem => cartItem.name === item.name);
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        item.quantity = 1;
+        cart.push(item);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showAddedPopup(item.name); // Show confirmation popup
     };
 
     project.innerHTML = `
@@ -60,29 +73,36 @@ function displayMenu(items) {
       </div>
     `;
     project.querySelector('.project-content').appendChild(addToCartBtn);
-
     container.appendChild(project);
   });
 }
 
-// ✅ Only one fetch
 fetch('menu.json')
   .then(response => response.json())
   .then(data => {
     menuItems = data;
-    displayMenu(menuItems); // initial render
-    updateCart(); // load cart from localStorage
+    displayMenu(menuItems);
+    updateCart();
   })
   .catch(error => {
     console.error('Fehler beim Laden des Menüs:', error);
   });
 
-// 🔍 Search filtering
 document.getElementById('searchBar').addEventListener('input', (e) => {
   const term = e.target.value.toLowerCase();
   const filtered = menuItems.filter(item =>
     item.name.toLowerCase().includes(term)
   );
-  displayMenu(filtered); // re-render filtered items
+  displayMenu(filtered);
 });
 
+function showAddedPopup(itemName) {
+  const popup = document.createElement('div');
+  popup.className = 'added-popup';
+  popup.innerHTML = `✔️ <strong>${itemName}</strong> wurde zum Warenkorb hinzugefügt!`;
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 2000);
+}
