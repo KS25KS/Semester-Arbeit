@@ -1,28 +1,48 @@
-/* Add this to your main CSS file */
+/* Hero container */
 .hero {
     position: relative;
-    width: 100%;
-    height: 100vh; /* Full height of the viewport */
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-}
-
-#player {
+  }
+  
+  /* Fullscreen YouTube iframe */
+  #player iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%; /* Ensures the video covers the whole screen */
-    z-index: -1; /* Puts the video behind the content */
-}
-
-/* You can adjust the content position (text, buttons, etc.) */
-.hero-content {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    object-fit: cover;
+  }
+  
+  /* Content on top */
+  .hero-content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1; /* Makes sure your content stays in front */
-    color: white;
+    z-index: 1;
     text-align: center;
-    padding: 20px;
-}
+    color: white;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+  
+  /* Button styling */
+  .hero-content .btn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff6347;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .hero-content .btn:hover {
+    background-color: #e5533f;
+  }
