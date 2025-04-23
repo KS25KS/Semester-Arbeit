@@ -105,13 +105,21 @@
         </div>
         
         <div id="thankyou-modal" class="modal-overlay">
-            <div class="modal-content">
-              <div class="checkmark">✅</div>
-              <h2>Vielen Dank für Ihre Bestellung!</h2>
-              <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
-              <button id="close-modal">Schließen</button>
-            </div>
+          <div class="modal-content receipt">
+            <div class="checkmark">✅</div>
+            <h2>Vielen Dank für Ihre Bestellung!</h2>
+            <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
+            <hr>
+            <p><strong>Bestellnummer:</strong> <span id="order-number"></span></p>
+            <p><strong>Datum & Zeit:</strong> <span id="order-date"></span></p>
+            <div id="receipt-items"></div>
+            <p><strong>Zwischensumme:</strong> CHF <span id="subtotal-amount">0.00</span></p>
+            <p><strong>MWST (2.6%):</strong> CHF <span id="tax-amount">0.00</span></p>
+            <p><strong>Gesamtbetrag:</strong> CHF <span id="receipt-total">0.00</span></p>
+            <button id="close-modal">Schließen</button>
           </div>
+        </div>
+          
 
         <script src="checkout.js"></script>
     </body>
