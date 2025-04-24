@@ -146,3 +146,4 @@ if (closeModalBtn) {
 
 // ✅ On page load
 updateCart();
+
