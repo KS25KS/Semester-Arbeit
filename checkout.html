@@ -91,35 +91,65 @@
         </ul>
     </nav>
     <body>
-        <div class="container">
-            <h1>Bestellung bestätigen</h1>
-            <div id="checkout-summary">
-                <h2>Warenkorb Zusammenfassung:</h2>
-                <div id="checkout-items"></div>
-                <div id="checkout-total">
-                    <strong>Gesamt: CHF <span id="checkout-price">0.00</span></strong>
-                </div>
-            </div>
-            <button id="checkout-button">Bestellung abschließen</button>
-
-        </div>
-        
-        <div id="thankyou-modal" class="modal-overlay">
-          <div class="modal-content receipt">
-            <div class="checkmark">✅</div>
-            <h2>Vielen Dank für Ihre Bestellung!</h2>
-            <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
-            <hr>
-            <p><strong>Bestellnummer:</strong> <span id="order-number"></span></p>
-            <p><strong>Datum & Zeit:</strong> <span id="order-date"></span></p>
-            <div id="receipt-items"></div>
-            <p><strong>Zwischensumme:</strong> CHF <span id="subtotal-amount">0.00</span></p>
-            <p><strong>MWST (2.6%):</strong> CHF <span id="tax-amount">0.00</span></p>
-            <p><strong>Gesamtbetrag:</strong> CHF <span id="receipt-total">0.00</span></p>
-            <button id="close-modal">Schließen</button>
+      <div class="container">
+          <h1>Bestellung bestätigen</h1>
+          <div id="checkout-summary">
+              <h2>Warenkorb Zusammenfassung:</h2>
+              <div id="checkout-items"></div>
+              <div id="checkout-total">
+                  <strong>Gesamt: CHF <span id="checkout-price">0.00</span></strong>
+              </div>
           </div>
-        </div>
+  
+          <!-- Payment Section -->
+          <div id="payment-section">
+              <h3>Wählen Sie eine Zahlungsmethode</h3>
+              <div class="payment-options">
+                  <!-- Credit Card Section -->
+                  <div class="payment-option">
+                      <h4>Kreditkarte</h4>
+                      <label for="credit-card-number">Kreditkartennummer:</label>
+                      <input type="text" id="credit-card-number" placeholder="1234 5678 9101 1121" maxlength="16" />
+                      <span id="credit-card-error" class="error-message">Bitte geben Sie eine gültige Kreditkartennummer ein (mindestens 16 Ziffern).</span>
+                    </div>
+  
+                  <!-- Twint Section -->
+                  <div class="payment-option">
+                      <h4>Twint</h4>
+                      <p>Nummer: +41 12 345 67 89</p>
+                  </div>
+              </div>
+          </div>
+  
+          <button id="checkout-button">Bestellung abschließen</button>
           
-
-        <script src="checkout.js"></script>
-    </body>
+          <!-- Payment Logos Section -->
+          <div id="payment-logos">
+              <h4>Akzeptierte Zahlungsmethoden</h4>
+              <div class="logos" style="text-align: center; margin-top: 20px;">
+                  <img src="visa-logo.png" alt="Visa" class="payment-logo" style="width: 40px; margin: 5px;">
+                  <i class="fa-brands fa-cc-mastercard fa-2xl"alt="MasterCard" class="payment-logo" style="width: 40px; margin: 5px;"></i>
+                  <img src="twint-logo.png" alt="Twint" class="payment-logo" style="width: 40px; margin: 5px;">
+              </div>
+          </div>
+      </div>
+  
+      <div id="thankyou-modal" class="modal-overlay">
+          <div class="modal-content receipt">
+              <div class="checkmark">✅</div>
+              <h2>Vielen Dank für Ihre Bestellung!</h2>
+              <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
+              <hr>
+              <p><strong>Bestellnummer:</strong> <span id="order-number"></span></p>
+              <p><strong>Datum & Zeit:</strong> <span id="order-date"></span></p>
+              <div id="receipt-items"></div>
+              <p><strong>Zwischensumme:</strong> CHF <span id="subtotal-amount">0.00</span></p>
+              <p><strong>MWST (2.6%):</strong> CHF <span id="tax-amount">0.00</span></p>
+              <p><strong>Gesamtbetrag:</strong> CHF <span id="receipt-total">0.00</span></p>
+              <button id="close-modal">Schließen</button>
+          </div>
+      </div>
+  
+      <script src="checkout.js"></script>
+  </body>
+  

@@ -1,3 +1,19 @@
+// Credit Card Validation
+const creditCardInput = document.getElementById('credit-card-number');
+const errorMessage = document.getElementById('credit-card-error');
+
+// Validate Credit Card Number Input
+creditCardInput.addEventListener('input', () => {
+  const cardValue = creditCardInput.value;
+
+  // Check if the card number is at least 16 digits long and contains only numbers
+  if (cardValue.length >= 16 && /^\d+$/.test(cardValue)) {
+    errorMessage.style.display = 'none';  // Hide error message if valid
+  } else {
+    errorMessage.style.display = 'block';  // Show error message if invalid
+  }
+});
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function updateCart() {
@@ -61,6 +77,17 @@ function updateCart() {
 const checkoutBtn = document.getElementById('checkout-button');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
+    // Check if credit card number is valid (16 digits minimum)
+    const cardValue = creditCardInput.value;
+    if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
+      errorMessage.style.display = 'block';  // Show error message if card number is invalid
+      return;  // Prevent further actions (i.e., modal display) if credit card is invalid
+    }
+
+    // Hide error message if card number is valid
+    errorMessage.style.display = 'none';
+
+    // Proceed with showing the receipt modal if the card is valid
     const modal = document.getElementById('thankyou-modal');
     modal.style.display = 'flex';
 
@@ -93,7 +120,6 @@ if (checkoutBtn) {
       p.textContent = `${item.name} x ${quantity} – CHF ${itemTotal.toFixed(2)}`;
       receiptContainer.appendChild(p);
     });
-    
 
     // MWST 2.6%
     const mwst = total * 0.026;
