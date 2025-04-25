@@ -6,6 +6,7 @@
     "price": 8.50,
     "image": "./images/burger.jpg",
     "link": "cart.html",
+    "estimatedtime": 15,
     "category": "Burgers"
 },
 
@@ -15,6 +16,7 @@
   "price": 8.00,
   "image": "./images/cburger.jpg",
   "link":"cart.html",
+  "estimatedtime": 15,
   "category":"Burgers"
 },
 
@@ -24,6 +26,7 @@
   "price": 7.50,
   "image": "./images/vegiburger.jpg",
   "link":"cart.html",
+  "estimatedtime": 15,
   "category":"Burgers"
 },
 
@@ -34,6 +37,7 @@
   "price": 15.50,
   "image":"./images/shrimp.jpg",
   "link":"cart.html",
+  "estimatedtime": 10,
   "category": "Seafood"
 },
 
@@ -43,16 +47,18 @@
   "price": 15.50,
   "image": "./images/fishnchips.jpg",
   "link":"cart.html",
+  "estimatedtime": 20,
   "category": "Seafood"
 },
 
 
 {
   "name": "Tortilla Chips",
-  "description": "Tortilla Chips mit grosser auswahl von Toppings, wie Käse, Tomaten, Zwiebeln, Oliven, Salsa, Chilli, unsw.",
+  "description": "Tortilla Chips mit grosser auswahl von Toppings, wie Käse, Tomaten, Zwiebeln, Oliven, Salsa, Chilli, unsw. Vorgeschlagen für Abholung oder im Restaurant",
   "price": 12.50,
   "image": "./images/tortilla.jpg",
   "link":"cart.html",
+  "estimatedtime": 20,
   "category": "Sides"
 },
 
@@ -63,6 +69,7 @@
   "price": 11.50,
   "image":"./images/jalapeno.jpg",
   "link":"cart.html",
+  "estimatedtime": 12,
   "category": "Sides"
 },
 
@@ -73,6 +80,7 @@
   "price": 5.50,
   "image": "./images/crisps.jpg",
   "link":"cart.html",
+  "estimatedtime": 0,
   "category":"Sides"
 },
 
@@ -82,6 +90,7 @@
   "price": 10.50,
   "image": "./images/wings.jpg",
   "link":"cart.html",
+  "estimatedtime": 25,
   "category": "Sides"
 },
 
@@ -92,6 +101,7 @@
   "price": 22.00,
   "image":"./images/rotisserie.jpg",
   "link":"cart.html",
+  "estimatedtime": 35,
   "category":"Main dish"
 },
 
@@ -101,6 +111,7 @@
   "price": 20.00,
   "image": "./images/mildrotisserie.jpg",
   "link":"cart.html",
+  "estimatedtime": 35,
   "category":"Main dish"
 },
 
@@ -110,6 +121,7 @@
   "price": 15.50,
   "image":"./images/grilledchicken.jpg",
   "link":"cart.html",
+  "estimatedtime": 25,
   "category":"Main dish"
 }
 

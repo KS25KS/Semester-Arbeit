@@ -80,22 +80,18 @@ if (checkoutBtn) {
     // Check if credit card number is valid (16 digits minimum)
     const cardValue = creditCardInput.value;
     if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
-      errorMessage.style.display = 'block';  // Show error message if card number is invalid
-      return;  // Prevent further actions (i.e., modal display) if credit card is invalid
+      errorMessage.style.display = 'block';
+      return;
     }
 
-    // Hide error message if card number is valid
     errorMessage.style.display = 'none';
 
-    // Proceed with showing the receipt modal if the card is valid
     const modal = document.getElementById('thankyou-modal');
     modal.style.display = 'flex';
 
-    // Generate random order number
     const orderNumber = 'CH' + Math.floor(Math.random() * 9999);
     document.getElementById('order-number').textContent = orderNumber;
 
-    // Set date and time
     const now = new Date();
     const formattedDate = now.toLocaleString('de-CH', {
       day: '2-digit',
@@ -106,7 +102,6 @@ if (checkoutBtn) {
     });
     document.getElementById('order-date').textContent = formattedDate;
 
-    // Render receipt items
     const receiptContainer = document.getElementById('receipt-items');
     receiptContainer.innerHTML = '';
     let total = 0;
@@ -121,7 +116,6 @@ if (checkoutBtn) {
       receiptContainer.appendChild(p);
     });
 
-    // MWST 2.6%
     const mwst = total * 0.026;
     const totalWithTax = total + mwst;
 
@@ -129,54 +123,113 @@ if (checkoutBtn) {
     document.getElementById('tax-amount').textContent = mwst.toFixed(2);
     document.getElementById('receipt-total').textContent = totalWithTax.toFixed(2);
 
-    // Add delivery info to the receipt (inside the modal)
     const receiptDelivery = document.getElementById('receipt-delivery-info');
+    const orderType = localStorage.getItem("orderType");
     const deliveryData = JSON.parse(localStorage.getItem("deliveryInfo"));
+    const pickupData = JSON.parse(localStorage.getItem("pickupInfo"));
 
-    // Check if delivery data is available
-    if (deliveryData && receiptDelivery) {
-      const { name, address, plz, deliveryOption } = deliveryData;
+    let userData = null;
+
+    if (orderType === "Lieferung" && deliveryData) {
+      userData = deliveryData;
+    } else if (orderType === "Abholung" && pickupData) {
+      userData = pickupData;
+    }
+
+    if (userData && receiptDelivery) {
+      const { name, address, plz, deliveryOption } = userData;
       let html = `
         <hr>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Option:</strong> ${deliveryOption}</p>
       `;
-      if (deliveryOption === "Lieferung") {
+
+      // Show address and postcode only if it's a "Lieferung" (delivery)
+      if (deliveryOption === "Lieferung" && address && plz) {
         html += `
           <p><strong>Adresse:</strong> ${address}</p>
           <p><strong>PLZ:</strong> ${plz}</p>
         `;
       }
+
       receiptDelivery.innerHTML = html;
     }
 
-    // Clear the cart
-    cart = [];
-    localStorage.removeItem('cart');
-    updateCart();
+    // Calculate estimated preparation time
+    let totalPrepTime = 0;
+    cart.forEach(item => {
+      const quantity = item.quantity || 1;
+      totalPrepTime += item.estimatedtime * quantity;
+    });
 
-    // Estimate a random delivery time between 30 and 75 minutes
-    const estimatedTime = Math.floor(Math.random() * (75 - 30 + 1)) + 30;
+    totalPrepTime = Math.min(totalPrepTime, 75);
+
+    // Initialize buffer time based on order type
+    let deliveryBuffer = 0;
+    if (orderType === "Lieferung") {
+      deliveryBuffer = 12; // Buffer time for delivery
+    } else if (orderType === "Abholung") {
+      deliveryBuffer = 5;  // Buffer time for pickup
+    }
+
+    const estimatedTime = totalPrepTime + deliveryBuffer;
     document.getElementById('estimated-time').textContent = estimatedTime;
+
+    // 🆕 Show delivery/pickup message in modal
+    const estimatedMessage = document.getElementById('estimated-message');
+    if (estimatedMessage && deliveryData) {
+      let message = "";
+      if (deliveryData.deliveryOption === "Lieferung") {
+        message = `Ihre Bestellung wird voraussichtlich in ${estimatedTime} Minuten ankommen.`;
+      } else if (deliveryData.deliveryOption === "Abholung") {
+        message = `Ihre Bestellung wird voraussichtlich in ${estimatedTime} Minuten bereit zur Abholung sein.`;
+      }
+      estimatedMessage.textContent = message;
+    }
 
     // Show order progress section
     const orderProgress = document.getElementById('order-progress');
     orderProgress.style.display = 'block';
 
-    // Start progress bar animation based on the estimated time
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
 
     let progress = 0;
-    const interval = setInterval(() => {
-      progress += 100 / estimatedTime; // Update progress bar every minute
+
+    // **Option 1: Real-Time Progress** - Progress updates every 60 seconds (1 minute)
+    const realTimeInterval = setInterval(() => {
+      progress += 100 / estimatedTime;  // Regular progress update based on estimated time (real-time)
+      
       if (progress >= 100) {
         progress = 100;
-        clearInterval(interval);
+        clearInterval(realTimeInterval);
         progressText.textContent = "Bestellung abgeschlossen!";
       }
       progressBar.style.width = progress + "%";
-    }, 60000); // Update progress every minute
+    }, 60000);  // Real-time updates every 60 seconds (1 minute)
+
+    // **Option 2: Faster Progress for Presentation** - Progress updates every 15 seconds
+    /*
+    const presentationInterval = setInterval(() => {
+      progress += 100 / (estimatedTime / 4);  // Update progress much faster (adjust calculation here if needed)
+      
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(presentationInterval);
+        progressText.textContent = "Bestellung abgeschlossen!";
+      }
+      progressBar.style.width = progress + "%";
+    }, 15000);  // Presentation-time updates every 15 seconds (faster progress)
+    */
+
+    // To switch between Real-Time and Faster Progress:
+    // - **For Real-Time Progress**: Keep the `realTimeInterval` block uncommented and ensure the `presentationInterval` block is commented out.
+    // - **For Faster Progress (Presentation)**: Uncomment the `presentationInterval` block and comment out the `realTimeInterval` block.
+
+    // Clear the cart after processing
+    cart = [];
+    localStorage.removeItem('cart');
+    updateCart();
   });
 }
 
@@ -191,14 +244,13 @@ if (closeModalBtn) {
 // On page load
 updateCart();
 
-// Display address or pickup info (this will now only show the delivery info in the modal, not at the bottom)
+// Display delivery info cleanup (no longer shown on page)
 function displayDeliveryInfo() {
   const deliveryData = JSON.parse(localStorage.getItem("deliveryInfo"));
   const deliveryDiv = document.getElementById("delivery-info");
 
   if (!deliveryData || !deliveryDiv) return;
 
-  // We don't want to show this info twice, so clearing the delivery info before re-rendering.
   const { name, address, plz, deliveryOption } = deliveryData;
 
   let html = `
@@ -214,7 +266,6 @@ function displayDeliveryInfo() {
     `;
   }
 
-  // This is no longer needed on the page (we now show it in the receipt modal only)
-  deliveryDiv.innerHTML = '';  // Clear it out
+  deliveryDiv.innerHTML = '';  // No longer shown
 }
 displayDeliveryInfo();

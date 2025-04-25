@@ -92,32 +92,33 @@
     </nav>
     
 <body>
-  <div class="container">
+  <<div class="container">
     <h1>Liefer- oder Abholinformation</h1>
-
+  
     <form id="info-form">
       <label for="order-type">Bestellart:</label>
       <select id="order-type" required>
         <option value="delivery">Lieferung</option>
         <option value="pickup">Abholung</option>
       </select>
-
+  
+      <!-- Name field is always visible -->
+      <label for="fullname">Vollständiger Name:</label>
+      <input type="text" id="fullname">
+  
+      <!-- Delivery fields only visible if 'Lieferung' is selected -->
       <div id="delivery-fields">
-        <label for="fullname">Vollständiger Name:</label>
-        <input type="text" id="fullname">
-
         <label for="address">Strasse und Hausnummer:</label>
-       <!--- <textarea id="address" rows="3"></textarea>-->
         <input type="text" id="address">
-
-
+  
         <label for="postcode">PLZ:</label>
         <input type="number" id="postcode" min="8000" max="8960" placeholder="z.B. 8050">
       </div>
-
+  
       <button type="submit">Weiter zur Bestätigung</button>
     </form>
   </div>
+  
 
   <script src="info.js"></script>
 
