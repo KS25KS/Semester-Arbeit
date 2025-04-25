@@ -71,8 +71,8 @@ if (checkoutBtn) {
         if (cart.length === 0) {
             alert('Ihr Warenkorb ist leer. Bitte fügen Sie Artikel hinzu.');
         } else {
-            // If there are items in the cart, proceed to the checkout page
-            window.location.href = "checkout.html"; // Redirect to the checkout page
+            // If there are items in the cart, proceed to the info page
+            window.location.href = "info.html"; // Redirect to the info page
         }
     });
 }

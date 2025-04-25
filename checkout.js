@@ -73,7 +73,7 @@ function updateCart() {
   }
 }
 
-// ✅ Handle checkout and show receipt modal
+// Handle checkout and show receipt modal
 const checkoutBtn = document.getElementById('checkout-button');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
@@ -129,14 +129,58 @@ if (checkoutBtn) {
     document.getElementById('tax-amount').textContent = mwst.toFixed(2);
     document.getElementById('receipt-total').textContent = totalWithTax.toFixed(2);
 
+    // Add delivery info to the receipt (inside the modal)
+    const receiptDelivery = document.getElementById('receipt-delivery-info');
+    const deliveryData = JSON.parse(localStorage.getItem("deliveryInfo"));
+
+    // Check if delivery data is available
+    if (deliveryData && receiptDelivery) {
+      const { name, address, plz, deliveryOption } = deliveryData;
+      let html = `
+        <hr>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Option:</strong> ${deliveryOption}</p>
+      `;
+      if (deliveryOption === "Lieferung") {
+        html += `
+          <p><strong>Adresse:</strong> ${address}</p>
+          <p><strong>PLZ:</strong> ${plz}</p>
+        `;
+      }
+      receiptDelivery.innerHTML = html;
+    }
+
     // Clear the cart
     cart = [];
     localStorage.removeItem('cart');
     updateCart();
+
+    // Estimate a random delivery time between 30 and 75 minutes
+    const estimatedTime = Math.floor(Math.random() * (75 - 30 + 1)) + 30;
+    document.getElementById('estimated-time').textContent = estimatedTime;
+
+    // Show order progress section
+    const orderProgress = document.getElementById('order-progress');
+    orderProgress.style.display = 'block';
+
+    // Start progress bar animation based on the estimated time
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 100 / estimatedTime; // Update progress bar every minute
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        progressText.textContent = "Bestellung abgeschlossen!";
+      }
+      progressBar.style.width = progress + "%";
+    }, 60000); // Update progress every minute
   });
 }
 
-// ✅ Close modal
+// Close modal
 const closeModalBtn = document.getElementById('close-modal');
 if (closeModalBtn) {
   closeModalBtn.addEventListener('click', () => {
@@ -144,6 +188,33 @@ if (closeModalBtn) {
   });
 }
 
-// ✅ On page load
+// On page load
 updateCart();
 
+// Display address or pickup info (this will now only show the delivery info in the modal, not at the bottom)
+function displayDeliveryInfo() {
+  const deliveryData = JSON.parse(localStorage.getItem("deliveryInfo"));
+  const deliveryDiv = document.getElementById("delivery-info");
+
+  if (!deliveryData || !deliveryDiv) return;
+
+  // We don't want to show this info twice, so clearing the delivery info before re-rendering.
+  const { name, address, plz, deliveryOption } = deliveryData;
+
+  let html = `
+    <h3>Lieferinformationen</h3>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Option:</strong> ${deliveryOption}</p>
+  `;
+
+  if (deliveryOption === "Lieferung") {
+    html += `
+      <p><strong>Adresse:</strong> ${address}</p>
+      <p><strong>PLZ:</strong> ${plz}</p>
+    `;
+  }
+
+  // This is no longer needed on the page (we now show it in the receipt modal only)
+  deliveryDiv.innerHTML = '';  // Clear it out
+}
+displayDeliveryInfo();

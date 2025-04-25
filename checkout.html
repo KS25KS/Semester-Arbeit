@@ -138,21 +138,37 @@
       </div>
   
       <div id="thankyou-modal" class="modal-overlay">
-          <div class="modal-content receipt">
-              <div class="checkmark">✅</div>
-              <h2>Vielen Dank für Ihre Bestellung!</h2>
-              <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
-              <hr>
-              <p><strong>Bestellnummer:</strong> <span id="order-number"></span></p>
-              <p><strong>Datum & Zeit:</strong> <span id="order-date"></span></p>
-              <div id="receipt-items"></div>
-              <p><strong>Zwischensumme:</strong> CHF <span id="subtotal-amount">0.00</span></p>
-              <p><strong>MWST (2.6%):</strong> CHF <span id="tax-amount">0.00</span></p>
-              <p><strong>Gesamtbetrag:</strong> CHF <span id="receipt-total">0.00</span></p>
-              <button id="close-modal">Schliessen</button>
-          </div>
+        <div class="modal-content receipt">
+            <div class="checkmark">✅</div>
+            <h2>Vielen Dank für Ihre Bestellung!</h2>
+            <p>Ihre Bestellung wurde erfolgreich abgeschickt.</p>
+            <hr>
+            <p><strong>Bestellnummer:</strong> <span id="order-number"></span></p>
+            <p><strong>Datum & Zeit:</strong> <span id="order-date"></span></p>
+            <div id="receipt-items"></div>
+    
+            <!-- Receipt Delivery Info -->
+            <div id="receipt-delivery-info" style="margin-top: 10px;"></div>
+    
+            <p><strong>Zwischensumme:</strong> CHF <span id="subtotal-amount">0.00</span></p>
+            <p><strong>MWST (2.6%):</strong> CHF <span id="tax-amount">0.00</span></p>
+            <p><strong>Gesamtbetrag:</strong> CHF <span id="receipt-total">0.00</span></p>
+            <button id="close-modal">Schliessen</button>
+        </div>
+    </div>
+
+    <div id="order-progress" class="order-progress" style="display: none;">
+      <h3>Ihre Bestellung wird bearbeitet...</h3>
+      <p>Geschätzte Zeit: <span id="estimated-time"></span> Minuten</p>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
       </div>
-  
-      <script src="checkout.js"></script>
+      <p id="progress-text">Bearbeitung läuft...</p>
+    </div>
+    
+
+    
+    <script src="checkout.js"></script>
+    
   </body>
   
