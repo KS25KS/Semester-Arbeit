@@ -357,7 +357,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  display: none; /* 🔒 Hides until JS sets it to block */
+  display: none; /* Hidden until JS sets it to block */
 }
 
 .progress-bar-container {
@@ -372,8 +372,7 @@
   width: 0;
   background: linear-gradient(135deg, #2196F3, #0d7b0d);
   transition: width 1s;
-  border-radius: 
-
+  border-radius: 10px;
 }
 
 #progress-text {
@@ -400,21 +399,10 @@
 
 #truck-icon {
   position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Perfect centering */
-  left: 0;
-  animation: truck-move 6s linear infinite; /* Slowed down a bit */
-  font-size: 24px; /* Optional: ensure consistent size */
-  color: #333; /* Optional: better visibility depending on background */
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0%; /* Truck starts at 0% */
+  font-size: 24px;
+  color: #333;
+  transition: left 0.1s linear;  /* Smooth transition for movement */
 }
-
-
-@keyframes truck-move {
-  0% {
-    left: -40px;
-  }
-  100% {
-    left: 100%;
-  }
-}
-

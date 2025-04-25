@@ -191,40 +191,48 @@ if (checkoutBtn) {
     const orderProgress = document.getElementById('order-progress');
     orderProgress.style.display = 'block';
 
-    const progressBar = document.getElementById('progress-bar');
+    const progressBar = document.getElementById('delivery-progress-bar');  // ✅ correct ID
+    const truckIcon = document.getElementById('truck-icon');
     const progressText = document.getElementById('progress-text');
 
     let progress = 0;
 
     // **Option 1: Real-Time Progress** - Progress updates every 60 seconds (1 minute)
-    const realTimeInterval = setInterval(() => {
-      progress += 100 / estimatedTime;  // Regular progress update based on estimated time (real-time)
-      
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(realTimeInterval);
-        progressText.textContent = "Bestellung abgeschlossen!";
-      }
-      progressBar.style.width = progress + "%";
-    }, 60000);  // Real-time updates every 60 seconds (1 minute)
+const realTimeInterval = setInterval(() => {
+  progress += 100 / estimatedTime;  // Regular progress update based on estimated time (real-time)
 
-    // **Option 2: Faster Progress for Presentation** - Progress updates every 15 seconds
-    /*
-    const presentationInterval = setInterval(() => {
-      progress += 100 / (estimatedTime / 4);  // Update progress much faster (adjust calculation here if needed)
-      
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(presentationInterval);
-        progressText.textContent = "Bestellung abgeschlossen!";
-      }
-      progressBar.style.width = progress + "%";
-    }, 15000);  // Presentation-time updates every 15 seconds (faster progress)
-    */
+  if (progress >= 100) {
+    progress = 100;
+    clearInterval(realTimeInterval);
+    progressText.textContent = "Bestellung abgeschlossen!";
+  }
+
+  progressBar.style.width = progress + "%";
+  truckIcon.style.left = progress + "%";
+
+}, 60000);  // Real-time updates every 60 seconds (1 minute)
+
+// **Option 2: Faster Progress for Presentation** - Progress updates every 15 seconds
+/*
+const presentationInterval = setInterval(() => {
+  progress += 100 / (estimatedTime / 4);  // Update progress much faster (adjust calculation here if needed)
+
+  if (progress >= 100) {
+    progress = 100;
+    clearInterval(presentationInterval);
+    progressText.textContent = "Bestellung abgeschlossen!";
+  }
+
+  progressBar.style.width = progress + "%";
+  truckIcon.style.left = progress + "%";
+
+}, 15000);  // Presentation-time updates every 15 seconds (faster progress)
+*/
+// Presentation-time updates every 15 seconds (faster progress)
 
     // To switch between Real-Time and Faster Progress:
-    // - **For Real-Time Progress**: Keep the `realTimeInterval` block uncommented and ensure the `presentationInterval` block is commented out.
-    // - **For Faster Progress (Presentation)**: Uncomment the `presentationInterval` block and comment out the `realTimeInterval` block.
+    // - ✅ For Real-Time Progress: Keep the `realTimeInterval` block uncommented
+    // - ✅ For Faster Progress: Comment out `realTimeInterval` and uncomment `presentationInterval`
 
     // Clear the cart after processing
     cart = [];
