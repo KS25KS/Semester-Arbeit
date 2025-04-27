@@ -351,13 +351,12 @@
   z-index: 1000;
 }
 
-#order-progress {
+.order-progress {
   margin-top: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  display: none; /* Hidden until JS sets it to block */
 }
 
 .progress-bar-container {
@@ -365,44 +364,29 @@
   background-color: #ddd;
   border-radius: 10px;
   overflow: hidden;
+  height: 30px;
+  position: relative;
 }
 
 .progress-bar {
-  height: 20px;
-  width: 0;
-  background: linear-gradient(135deg, #2196F3, #0d7b0d);
-  transition: width 1s;
-  border-radius: 10px;
-}
-
-#progress-text {
-  margin-top: 10px;
-}
-
-#progress-container {
-  position: relative;
-  width: 100%;
-  height: 30px;
-  background-color: #ddd;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-#progress-bar {
   height: 100%;
-  width: 0%;
-  background-color: #4caf50;
-  border-radius: 15px;
+  width: 0;
+  background: linear-gradient(135deg, #2196F3 /* #8b0202 */, #0d7b0d);
   transition: width 1s ease;
+  border-radius: 10px;
 }
 
 #truck-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 0%; /* Truck starts at 0% */
+  left: 0%; /* Start at 0% */
   font-size: 24px;
   color: #333;
-  transition: left 0.1s linear;  /* Smooth transition for movement */
+  transition: left 1s ease; /* Smooth movement */
 }
+
+#progress-text {
+  margin-top: 10px;
+}
+
