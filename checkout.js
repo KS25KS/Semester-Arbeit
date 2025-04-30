@@ -71,14 +71,37 @@ function updateCart() {
   }
 }
 
+// --- PAYMENT METHOD TOGGLE LOGIC ---
+let selectedPaymentMethod = null;
+
+document.querySelectorAll('.payment-toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    // Hide all
+    document.querySelectorAll('.payment-details').forEach(detail => {
+      detail.classList.add('hidden');
+    });
+
+    // Set and show selected
+    const method = toggle.getAttribute('data-method');
+    selectedPaymentMethod = method;
+
+    const details = toggle.parentElement.querySelector('.payment-details');
+    if (details) {
+      details.classList.remove('hidden');
+    }
+  });
+});
+
 // Handle checkout and show receipt modal
 const checkoutBtn = document.getElementById('checkout-button');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
     const cardValue = creditCardInput.value;
-    if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
-      errorMessage.style.display = 'block';
-      return;
+    if (selectedPaymentMethod === 'Kreditkarte') {
+      if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
+        errorMessage.style.display = 'block';
+        return;
+      }
     }
 
     errorMessage.style.display = 'none';
@@ -119,6 +142,8 @@ if (checkoutBtn) {
     document.getElementById('subtotal-amount').textContent = total.toFixed(2);
     document.getElementById('tax-amount').textContent = mwst.toFixed(2);
     document.getElementById('receipt-total').textContent = totalWithTax.toFixed(2);
+
+    document.getElementById('receipt-payment-method').textContent = selectedPaymentMethod || 'Nicht angegeben';
 
     const receiptDelivery = document.getElementById('receipt-delivery-info');
     const orderType = localStorage.getItem("orderType");
