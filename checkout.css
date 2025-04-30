@@ -390,6 +390,11 @@
   margin-top: 10px;
 }
 
+/* Adding smooth scroll behavior to the whole page */
+html {
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
 .payment-method-selector {
   display: flex;
   gap: 15px;
@@ -404,20 +409,36 @@
   cursor: pointer;
   text-align: center;
   background-color: #fff;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition */
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   font-size: 18px;
+  position: relative; /* For absolute positioning the outline */
 }
 
 .payment-method:hover {
-  border-color: #4CAF50;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6; /* Blue border on hover */
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); /* Blue glow effect */
+  transform: translateY(-3px); /* Slight floating effect */
 }
 
+/* Adding a border around the container when hovered, like Stripe */
+.payment-method:hover::before {
+  content: ''; /* Empty content for pseudo element */
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #3b82f6; /* Blue border */
+  border-radius: 12px; /* Match the container’s rounded corners */
+  pointer-events: none; /* So this doesn't interfere with other interactions */
+}
+
+/* Active (selected) state with blue border and soft background */
 .payment-method.active {
-  border-color: #4CAF50;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  background-color: #f6fff6;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  background-color: #e6f1ff; /* Light blue background when active */
 }
 
 .payment-details {
