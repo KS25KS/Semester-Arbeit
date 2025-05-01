@@ -1,171 +1,159 @@
+/* === Checkout Summary === */
 #checkout-summary {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #checkout-summary h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .checkout-item {
-    font-size: 18px;
-    margin: 10px 0;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
+/* === Checkout Button === */
 #checkout-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
 #checkout-button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
-
+/* === Modal === */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  .modal-content .checkmark {
-    font-size: 50px;
-    margin-bottom: 15px;
-    color: #4caf50;
-  }
-  
-  .modal-content h2 {
-    margin-bottom: 10px;
-  }
-  
-  .modal-content p {
-    color: #666;
-  }
-  
-  #close-modal {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  #close-modal:hover {
-    background-color: #3e8e41;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-  }
-  
-  h1, h2 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  #cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-  
-  .cart-item {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .cart-item button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .cart-item button:hover {
-    background-color: #e04343;
-  }
-  
-  #cart-total {
-    text-align: right;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  #checkout-button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    font-size: 1.1em;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  #checkout-button:hover {
-    background-color: #218838;
-  }
-  
-  /* Modal Styling */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
-  /* Additional Receipt Styling */
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content .checkmark {
+  font-size: 50px;
+  margin-bottom: 15px;
+  color: #4caf50;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  color: #666;
+}
+
+#close-modal {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#close-modal:hover {
+  background-color: #3e8e41;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.95);
+  }
+
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* === Global Styles === */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* === Cart Styles === */
+#cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.cart-item {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-item button:hover {
+  background-color: #e04343;
+}
+
+#cart-total {
+  text-align: right;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* === Receipt Styles === */
 #receipt {
   text-align: left;
   margin-top: 20px;
@@ -224,33 +212,95 @@
   color: #777;
 }
 
-/* Responsive improvement for smaller devices */
-@media (max-width: 600px) {
-  .receipt-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .receipt-item span {
-    margin-top: 4px;
-  }
+/* === Truck Progress Bar === */
+.order-progress {
+margin-top: 20px;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+background-color: #f9f9f9;
 }
 
-/* Credit Card Section */
+.progress-bar-container {
+width: 100%;
+background-color: #ddd;
+border-radius: 10px;
+overflow: hidden;
+height: 30px;
+position: relative;
+}
+
+.progress-bar {
+height: 100%;
+width: 0;
+background: linear-gradient(135deg, #2196F3 /* #8b0202 */, #0d7b0d);
+transition: width 1s ease;
+border-radius: 10px;
+}
+
+#truck-icon {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 0%; /* Start at 0% */
+font-size: 24px;
+color: #333;
+transition: left 1s ease; /* Smooth movement */
+}
+
+#progress-text {
+margin-top: 10px;
+}
+
+/* === Payment Section (Stripe-style) === */
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
 .payment-option {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(50, 50, 93, 0.1), 0 1px 0 rgba(0, 0, 0, 0.07);
+  position: relative;
+}
+
+.payment-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(50, 50, 93, 0.15), 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-color: #635bff;
+}
+
+.payment-option.selected {
+  border-color: #635bff;
+  background-color: #f5f3ff;
 }
 
 .payment-option h4 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  color: #32325d;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
 }
 
+.payment-option h4 i {
+  margin-right: 10px;
+  color: #635bff;
+}
+
+.payment-option p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* === Credit Card Input === */
 #credit-card-number {
   width: 100%;
   padding: 12px;
@@ -273,18 +323,7 @@
   margin-top: 5px;
 }
 
-
-.payment-options {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.payment-option p {
-  font-size: 16px;
-  color: #555;
-}
-
+/* === Payment Logos === */
 .payment-logos {
   margin-top: 20px;
   text-align: center;
@@ -312,7 +351,21 @@
   opacity: 0.7;
 }
 
-/* Responsive design for small screens */
+/* === Bargeld input and label === */
+#bargeld-label, #bargeld-input {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+#bargeld-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* === Responsive === */
 @media (max-width: 600px) {
   .payment-options {
       gap: 10px;
@@ -321,128 +374,15 @@
   .payment-logos .logos {
       flex-direction: column;
   }
-}
 
-.modal-content {
-  max-height: 80vh; 
-  overflow-y: auto; 
-  padding: 20px;
-  background-color: white; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 10px #0000001a; 
-}
+  .receipt-item {
+      flex-direction: column;
+      align-items: flex-start;
+  }
 
-/* Scrollable area for the receipt items */
-#receipt-items {
-  max-height: 60vh; /* Set the max height for the receipt items */
-  overflow-y: auto; /* Allow vertical scrolling */
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.order-progress {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-.progress-bar-container {
-  width: 100%;
-  background-color: #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 30px;
-  position: relative;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(135deg, #2196F3 /* #8b0202 */, #0d7b0d);
-  transition: width 1s ease;
-  border-radius: 10px;
-}
-
-#truck-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0%; /* Start at 0% */
-  font-size: 24px;
-  color: #333;
-  transition: left 1s ease; /* Smooth movement */
-}
-
-#progress-text {
-  margin-top: 10px;
-}
-
-/* Adding smooth scroll behavior to the whole page */
-html {
-  scroll-behavior: smooth; /* Enable smooth scrolling */
-}
-
-.payment-method-selector {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.payment-method {
-  flex: 1;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  background-color: #fff;
-  transition: all 0.3s ease; /* Smooth transition */
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  font-size: 18px;
-  position: relative; /* For absolute positioning the outline */
-}
-
-.payment-method:hover {
-  border-color: #3b82f6; /* Blue border on hover */
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); /* Blue glow effect */
-  transform: translateY(-3px); /* Slight floating effect */
-}
-
-/* Adding a border around the container when hovered, like Stripe */
-.payment-method:hover::before {
-  content: ''; /* Empty content for pseudo element */
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid #3b82f6; /* Blue border */
-  border-radius: 12px; /* Match the container’s rounded corners */
-  pointer-events: none; /* So this doesn't interfere with other interactions */
-}
-
-/* Active (selected) state with blue border and soft background */
-.payment-method.active {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  background-color: #e6f1ff; /* Light blue background when active */
-}
-
-.payment-details {
-  margin-top: 15px;
+  .receipt-item span {
+      margin-top: 4px;
+  }
 }
 
 .hidden {
