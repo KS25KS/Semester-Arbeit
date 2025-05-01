@@ -1,0 +1,82 @@
+.login-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+  
+  .user-container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .user-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .user-icon-wrapper i {
+    color: #444;
+  }
+  
+  .points-badge {
+    position: absolute;
+    top: 0;
+    right: -15px;
+    background-color: #ff5722;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .user-info {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .login-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .login-box input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .login-box button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-box a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+  
