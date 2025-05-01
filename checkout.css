@@ -14,19 +14,25 @@
 
 /* === Checkout Button === */
 #checkout-button {
-  background-color: #4CAF50;
+  display: block; /* Makes it take full width if needed */
+  margin: 30px auto; /* Centers the button horizontally */
+  padding: 15px 30px; /* Makes the button larger */
+  font-size: 1.2em;
+  background-color: #28a745;
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 60%; /* Adjust as needed */
+  max-width: 400px;
 }
 
 #checkout-button:hover {
-  background-color: #45a049;
+  background-color: #218838;
 }
+
 
 /* === Modal === */
 .modal-overlay {
@@ -302,7 +308,7 @@ margin-top: 10px;
 
 /* === Credit Card Input === */
 #credit-card-number {
-  width: 100%;
+  width: 250px; /* Adjust the width as needed */
   padding: 12px;
   font-size: 16px;
   border: 2px solid #ccc;
