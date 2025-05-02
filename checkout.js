@@ -139,13 +139,13 @@ if (checkoutBtn) {
     cart.forEach(item => {
       const quantity = item.quantity || 1;
       const isFree = item.isFree === true;
-      const itemTotal = isFree ? 0 : item.price * quantity;  // If it's free, set total to 0
+      const itemTotal = isFree ? 0 : item.price * quantity;
       total += itemTotal;
-
+    
       const p = document.createElement('p');
-      p.textContent = `${item.name} x ${quantity} – CHF ${isFree ? 'GRATIS' : itemTotal.toFixed(2)}`;
+      p.textContent = `${item.name} x ${quantity} – ${isFree ? 'GRATIS (mit Punkten eingelöst)' : `CHF ${itemTotal.toFixed(2)}`}`;
       receiptContainer.appendChild(p);
-    });
+    });    
 
     const mwst = total * 0.026;
     const totalWithTax = total + mwst;
