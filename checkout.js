@@ -259,7 +259,7 @@ if (checkoutBtn) {
         estimatedMessage.textContent = message;
       }
 
-    }, 60000);
+    }, 2000);
 
     // **Option 2: Faster Progress for Presentation** - Updates every 15 seconds
     /*
@@ -328,10 +328,25 @@ function displayDeliveryInfo() {
 }
 displayDeliveryInfo();
 
-function addPointsForOrder(pointsToAdd = 10) {
-  const user = JSON.parse(localStorage.getItem("userData"));
-  if (!user) return;
+function showPointsEarnedPopup(points = 10) {
+  const popup = document.createElement('div');
+  popup.className = 'points-popup';
+  popup.innerHTML = `
+    🔥 <strong>Sie haben ${points} Punkte erhalten!</strong>
+    <div class="checkmark"></div>
+  `;
+  document.body.appendChild(popup);
 
-  user.points = (user.points || 0) + pointsToAdd;
-  localStorage.setItem("userData", JSON.stringify(user));
+  // Animate checkmark after 1s
+  setTimeout(() => {
+    const checkmark = popup.querySelector('.checkmark');
+    if (checkmark) {
+      checkmark.innerHTML = '✔️';
+      checkmark.style.animation = 'checkmark-animation 1s ease-in-out forwards';
+    }
+  }, 1000);
+
+  // Remove popup after 2.5s
+  setTimeout(() => popup.remove(), 2500);
 }
+

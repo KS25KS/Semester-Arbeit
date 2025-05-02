@@ -121,7 +121,7 @@ body {
 }
 
 .password-wrapper input {
-  width: 333px; 
+  width: 265px; 
   padding-right: 40px;
 }
 
@@ -133,4 +133,22 @@ body {
   cursor: pointer;
   color: #333;
 }
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.password-wrapper i {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
 

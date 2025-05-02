@@ -93,6 +93,27 @@ if (checkoutBtn) {
         if (cart.length === 0) {
             alert('Ihr Warenkorb ist leer. Bitte fügen Sie Artikel hinzu.');
         } else {
+            // 🟡 Calculate points using custom formula before moving to next page
+            const user = JSON.parse(localStorage.getItem("userData"));
+            if (user) {
+                const total = cart.reduce((sum, item) => {
+                    const quantity = item.quantity || 1;
+                    const isFree = item.isFree === true;
+                    return sum + (isFree ? 0 : item.price * quantity);
+                }, 0);
+
+                let rawPoints = total * 0.15;
+                let roundedPoints = (rawPoints % 1 < 0.05) 
+                    ? Math.floor(rawPoints) 
+                    : Math.ceil(rawPoints);
+                let finalPoints = Math.max(1, roundedPoints);
+
+                user.points = (user.points || 0) + finalPoints;
+                localStorage.setItem("userData", JSON.stringify(user));
+                updatePointsDisplay();
+
+            }
+
             window.location.href = "info.html";
         }
     });
