@@ -73,57 +73,80 @@
 />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-menu" style="z-index: 1000;">
-            <li><a href="login.html" class="nav-link" style="font-size: 18px;"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
-            <li><a href="checkout.html" class="nav-link" style="font-size: 18px;">Zur Kasse</a></li>
-            <li><a href="cart.html" class="nav-link" style="font-size: 18px;"><i class="fa-solid fa-basket-shopping fa-xl"></i> </a></li>
-            <li><a href="index.html" class="nav-link" style="font-size: 18px;">Startseite</a></li>
-            <li><a href="reserving.html" class="nav-link" style="font-size: 18px;">Reservieren</a></li>
-            <li><a href="contact.html" class="nav-link" style="font-size: 18px;">Kontakt</a></li>
-            <li><a href="online.html" class="nav-link" style="font-size: 18px;">Online-Bestellung</a></li>
-            <li><a href="events.html" class="nav-link" style="font-size: 18px;">Events & Catering</a></li>
-            <h2 style="float:left" style="font-size: 18px;">Peri-Peri Kitchen!</h2>
-        </ul>
-    </nav>
+  <nav class="navbar">
+      <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+      <ul class="nav-menu" style="z-index: 1000;">
+          <li><a href="login.html" class="nav-link" style="font-size: 18px;"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+          <li><a href="checkout.html" class="nav-link" style="font-size: 18px;">Zur Kasse</a></li>
+          <li><a href="cart.html" class="nav-link" style="font-size: 18px;"><i class="fa-solid fa-basket-shopping fa-xl"></i> </a></li>
+          <li><a href="index.html" class="nav-link" style="font-size: 18px;">Startseite</a></li>
+          <li><a href="reserving.html" class="nav-link" style="font-size: 18px;">Reservieren</a></li>
+          <li><a href="contact.html" class="nav-link" style="font-size: 18px;">Kontakt</a></li>
+          <li><a href="online.html" class="nav-link" style="font-size: 18px;">Online-Bestellung</a></li>
+          <li><a href="events.html" class="nav-link" style="font-size: 18px;">Events & Catering</a></li>
+          <h2 style="float:left" style="font-size: 18px;">Peri-Peri Kitchen!</h2>
+      </ul>
+  </nav>
 
-    <header>
-        <div class="header-container">
-            <h1>Login-Seite</h1>
-        </div>
-    </header>
+  <header>
+      <div class="header-container">
+          <h1>Login-Seite</h1>
+      </div>
+  </header>
 
-    <main class="login-main">
-        <div class="user-container">
-          <div class="user-icon-wrapper">
-            <i class="fa-solid fa-circle-user fa-10x"></i>
-            <div class="points-badge">
-              <i class="fa-solid fa-fire"></i>
-              <span id="points">0</span> Punkte
-            </div>
-          </div>
-      
-          <div class="user-info">
-            <p><strong>Name:</strong> <span id="userName">Gast</span></p>
-            <p><strong>Email:</strong> <span id="userEmail">Nicht eingeloggt</span></p>
-            <p><strong>Telefon:</strong> <span id="userPhone">Optional</span></p>
-          </div>
+  <main class="login-main">
+    <div class="user-container">
+      <div class="user-icon-wrapper">
+        <i class="fa-solid fa-circle-user fa-10x"></i>
+        <div class="points-badge">
+          <i class="fa-solid fa-fire"></i>
+          <span id="points">0</span> Punkte
         </div>
-      
-        <div class="login-box" id="loginBox">
-          <h2>Einloggen</h2>
-          <input type="email" id="loginEmail" placeholder="E-Mail">
-          <input type="password" id="loginPassword" placeholder="Passwort">
-          <button onclick="signIn()">Einloggen</button>
-          <p>Noch kein Konto? <a href="#">Registrieren</a></p>
-        </div>
-      </main>
+      </div>
+  
+      <div class="user-info">
+        <p>
+          <strong>Name:</strong> 
+          <span id="userName">Gast</span>
+        </p>
+        <p>
+          <strong>Email:</strong> 
+          <span id="userEmail">Nicht eingeloggt</span>
+          <i class="fa-solid fa-pen-to-square fa-xl edit-icon" onclick="editField('email')"></i>
+        </p>
+        <p>
+          <strong>Telefon:</strong> 
+          <span id="userPhone">Optional</span>
+          <i class="fa-solid fa-pen-to-square fa-xl edit-icon" onclick="editField('phone')"></i>
+        </p>
+      </div>
+    </div>
+  
+    <div class="login-box" id="loginBox">
+      <h2>Einloggen</h2>
+      <input type="email" id="loginEmail" placeholder="E-Mail">
+      <input type="tel" id="loginPhone" placeholder="Telefonnummer" pattern="\d*" inputmode="numeric" maxlength="15">
+  
+      <div class="password-wrapper">
+        <input type="password" id="loginPassword" placeholder="Passwort">
+        <i id="togglePassword" class="fa-solid fa-eye fa-xl"></i>
+      </div>
+  
+      <button onclick="signIn()">Einloggen</button>
+      <p>Noch kein Konto? <a href="#">Registrieren</a></p>
+    </div>
+  
+    <div class="logout-box" id="logoutBox" style="display: none;">
+      <button onclick="logout()">Ausloggen</button>
+    </div>
+  </main>
+  
+  
 
-      <script src="login.js"></script>
+    <script src="login.js"></script>
 
 </body>

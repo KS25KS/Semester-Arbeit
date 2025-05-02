@@ -1,0 +1,15 @@
+[
+    { "name": "Spicy Chicken Burger", "points": 100 },
+    { "name": "Crispy Chicken Burger", "points": 100 },
+    { "name": "Vegi Burger", "points": 90 },
+    { "name": "Crispy Fried Shrimp", "points": 180 },
+    { "name": "Fish 'n' Chips", "points": 180 },
+    { "name": "Tortilla Chips", "points": 130 },
+    { "name": "Peri Bites", "points": 120 },
+    { "name": "Potato Chips", "points": 60 },
+    { "name": "Spicy Chicken Wings", "points": 150 },
+    { "name": "Spicy Rotisserie Chicken", "points": 250 },
+    { "name": "Mild Rotisserie Chicken", "points": 230 },
+    { "name": "Grilled Chicken Breast with grilled Vegetables.", "points": 180 }
+  ]
+  

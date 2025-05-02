@@ -1,3 +1,7 @@
+body {
+  background-color: white !important;
+}
+
 .login-main {
     display: flex;
     flex-direction: column;
@@ -80,3 +84,53 @@
     text-decoration: none;
   }
   
+  header .header-container {
+    background-color: white !important;
+  }
+  
+  .logout-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logout-box button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-box button:hover {
+    background-color: #d32f2f;
+}
+
+.edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #333;
+}
+.edit-icon:hover {
+  color: #ff5722;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 333px; 
+  padding-right: 40px;
+}
+
+#togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+}
+

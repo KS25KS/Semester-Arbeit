@@ -13,6 +13,15 @@ creditCardInput.addEventListener('input', () => {
 });
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let pointsMenu = [];  // Declare a variable to hold the points menu data
+
+// Load the points menu from the JSON file
+fetch('menu_points.json') // Adjust the path as needed
+  .then(res => res.json())
+  .then(data => {
+    pointsMenu = data;  // Save the points menu data
+  })
+  .catch(err => console.error('Failed to load points menu:', err));
 
 function updateCart() {
   const cartItemsContainer = document.getElementById('cart-items');
@@ -27,11 +36,12 @@ function updateCart() {
 
   cart.forEach((item, index) => {
     const quantity = item.quantity || 1;
-    const itemTotal = item.price * quantity;
+    const isFree = item.isFree === true;  // Check if the item is free (redeemed with points)
+    const itemTotal = isFree ? 0 : item.price * quantity;  // If it's free, set total to 0
     total += itemTotal;
 
     const itemHTML = `
-      ${item.name} x ${quantity} - CHF ${itemTotal.toFixed(2)}
+      ${item.name} x ${quantity} - ${isFree ? 'GRATIS' : `CHF ${itemTotal.toFixed(2)}`}
     `;
 
     if (cartItemsContainer) {
@@ -128,11 +138,12 @@ if (checkoutBtn) {
 
     cart.forEach(item => {
       const quantity = item.quantity || 1;
-      const itemTotal = item.price * quantity;
+      const isFree = item.isFree === true;
+      const itemTotal = isFree ? 0 : item.price * quantity;  // If it's free, set total to 0
       total += itemTotal;
 
       const p = document.createElement('p');
-      p.textContent = `${item.name} x ${quantity} – CHF ${itemTotal.toFixed(2)}`;
+      p.textContent = `${item.name} x ${quantity} – CHF ${isFree ? 'GRATIS' : itemTotal.toFixed(2)}`;
       receiptContainer.appendChild(p);
     });
 
@@ -271,6 +282,8 @@ if (checkoutBtn) {
     }, 15000);
     */
 
+    addPointsForOrder(10); // or any value you want to reward
+
     // Clear the cart
     cart = [];
     localStorage.removeItem('cart');
@@ -314,3 +327,11 @@ function displayDeliveryInfo() {
   deliveryDiv.innerHTML = '';
 }
 displayDeliveryInfo();
+
+function addPointsForOrder(pointsToAdd = 10) {
+  const user = JSON.parse(localStorage.getItem("userData"));
+  if (!user) return;
+
+  user.points = (user.points || 0) + pointsToAdd;
+  localStorage.setItem("userData", JSON.stringify(user));
+}
