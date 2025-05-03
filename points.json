@@ -1,15 +1,14 @@
 [
-    { "name": "Spicy Chicken Burger", "points": 100 },
-    { "name": "Crispy Chicken Burger", "points": 100 },
-    { "name": "Vegi Burger", "points": 90 },
-    { "name": "Crispy Fried Shrimp", "points": 180 },
-    { "name": "Fish 'n' Chips", "points": 180 },
-    { "name": "Tortilla Chips", "points": 130 },
-    { "name": "Peri Bites", "points": 120 },
-    { "name": "Potato Chips", "points": 60 },
-    { "name": "Spicy Chicken Wings", "points": 150 },
-    { "name": "Spicy Rotisserie Chicken", "points": 250 },
-    { "name": "Mild Rotisserie Chicken", "points": 230 },
-    { "name": "Grilled Chicken Breast with grilled Vegetables", "points": 180 }
-  ]
-  
+  { "name": "Spicy Chicken Burger", "points": 1000 },
+  { "name": "Crispy Chicken Burger", "points": 1000 },
+  { "name": "Vegi Burger", "points": 900 },
+  { "name": "Crispy Fried Shrimp", "points": 1800 },
+  { "name": "Fish 'n' Chips", "points": 1800 },
+  { "name": "Tortilla Chips", "points": 1300 },
+  { "name": "Peri Bites", "points": 1200 },
+  { "name": "Potato Chips", "points": 600 },
+  { "name": "Spicy Chicken Wings", "points": 1500 },
+  { "name": "Spicy Rotisserie Chicken", "points": 3000 },
+  { "name": "Mild Rotisserie Chicken", "points": 2700 },
+  { "name": "Grilled Chicken Breast with grilled Vegetables", "points": 1800 }
+]

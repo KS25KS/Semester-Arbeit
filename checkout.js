@@ -16,7 +16,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let pointsMenu = [];  // Declare a variable to hold the points menu data
 
 // Load the points menu from the JSON file
-fetch('menu_points.json') // Adjust the path as needed
+fetch('points.json') 
   .then(res => res.json())
   .then(data => {
     pointsMenu = data;  // Save the points menu data
@@ -282,7 +282,7 @@ if (checkoutBtn) {
     }, 15000);
     */
 
-    addPointsForOrder(10); // or any value you want to reward
+    addPointsForOrder();
 
     // Clear the cart
     cart = [];
@@ -328,10 +328,67 @@ function displayDeliveryInfo() {
 }
 displayDeliveryInfo();
 
-function addPointsForOrder(pointsToAdd = 10) {
-  const user = JSON.parse(localStorage.getItem("userData"));
-  if (!user) return;
+function showPointsPopup(points) {
+  if (!points || points <= 0) return;
 
-  user.points = (user.points || 0) + pointsToAdd;
-  localStorage.setItem("userData", JSON.stringify(user));
+  const popup = document.createElement('div');
+  popup.className = 'points-popup'; // must match your CSS
+  popup.innerHTML = `🔥 +${points} Punkte!`;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.classList.add('fade-out');
+    setTimeout(() => popup.remove(), 500);
+  }, 2000);
 }
+
+
+async function addPointsForOrder() {
+  const user = JSON.parse(localStorage.getItem("userData"));
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!user || cart.length === 0) return;
+
+  // Load redeem values from points.json
+  const response = await fetch('points.json');
+  const redeemValues = await response.json();
+
+  const redeemMap = {};
+  redeemValues.forEach(item => {
+    redeemMap[item.name] = item.points;
+  });
+
+  let earnedPoints = 0;
+
+  cart.forEach(item => {
+    if (item.isFree) return;
+    const quantity = item.quantity || 1;
+    const redeemValue = redeemMap[item.name] || 0;
+    earnedPoints += Math.round((redeemValue / 10) * quantity);
+  });
+
+  user.points = (user.points || 0) + earnedPoints;
+  localStorage.setItem("userData", JSON.stringify(user));
+
+  // Show popup
+  const popup = document.getElementById("points-popup");
+  const checkmark = popup.querySelector(".checkmark");
+
+  if (popup) {
+    popup.innerHTML = `+${earnedPoints} Punkte gutgeschrieben! <span class="checkmark">✔</span>`;
+    popup.style.display = "flex";
+    checkmark.style.opacity = "0";
+
+    setTimeout(() => {
+      checkmark.style.animation = "checkmark-animation 0.6s ease forwards";
+    }, 300);
+
+    setTimeout(() => {
+      popup.style.display = "none";
+      checkmark.style.animation = "none";
+    }, 3000);
+  }
+
+  updatePointsDisplay();
+}
+
