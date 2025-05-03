@@ -124,8 +124,9 @@
                 <i class="fa-regular fa-money-bills fa-xl"></i> Bargeld bei Abholung oder Lieferung
               </h4>
               <div class="payment-details hidden">
-                <label for="cash-notes">Mit welchen Noten möchten Sie bezahlen?</label>
-                <textarea id="cash-notes" placeholder="z.B. 100 CHF Schein, 50 CHF Schein"></textarea>
+                <label for="cash-amount">Wie viel Bargeld geben Sie?</label>
+                <input type="number" id="cash-amount" placeholder="z.B. 50" min="0" step="0.05">
+                <span id="cash-error" class="error-message" style="display: none;">Bitte geben Sie einen Betrag ein, der mindestens dem Gesamtbetrag entspricht.</span>
               </div>
             </div>
       

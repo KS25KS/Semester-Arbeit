@@ -107,12 +107,39 @@ const checkoutBtn = document.getElementById('checkout-button');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
     const cardValue = creditCardInput.value;
+    const cashInput = document.getElementById('cash-amount');
+    const cashValue = parseFloat(cashInput?.value);
+    const cashError = document.getElementById('cash-error');
+    const totalRequired = parseFloat(document.getElementById('checkout-price').textContent);
+  
+    let isValid = true;
+  
+    if (!selectedPaymentMethod) {
+      alert('Bitte wählen Sie eine Zahlungsmethode aus.');
+      return;
+    }
+  
     if (selectedPaymentMethod === 'Kreditkarte') {
       if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
         errorMessage.style.display = 'block';
-        return;
+        isValid = false;
+      } else {
+        errorMessage.style.display = 'none';
+      }
+    } else if (selectedPaymentMethod === 'Bargeld') {
+      if (totalRequired === 0) {
+        cashError.style.display = 'none'; // no payment needed
+      } else if (isNaN(cashValue) || cashValue < totalRequired) {
+        cashError.style.display = 'block';
+        isValid = false;
+      } else {
+        cashError.style.display = 'none';
       }
     }
+    
+  
+    if (!isValid) return;
+  
 
     errorMessage.style.display = 'none';
 

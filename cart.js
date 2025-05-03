@@ -3,7 +3,7 @@ console.log('Cart loaded from localStorage:', cart);
 
 // Load points menu
 let pointsMenu = [];
-fetch('menu_points.json')
+fetch('points.json')
     .then(res => res.json())
     .then(data => {
         pointsMenu = data;
