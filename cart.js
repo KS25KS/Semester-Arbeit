@@ -14,7 +14,7 @@ function updateCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalPriceElement = document.getElementById('total-price');
 
-    cartItemsContainer.innerHTML = '';
+    cartItemsContainer.innerHTML = ''; 
 
     let total = 0;
 
@@ -27,7 +27,7 @@ function updateCart() {
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-          ${item.name} x ${quantity} – ${isFree ? 'GRATIS' : `CHF ${itemTotal.toFixed(2)}`}
+          ${item.name} x ${quantity} - ${isFree ? 'GRATIS' : `CHF ${itemTotal.toFixed(2)}`}
           <button class="remove-btn" data-index="${index}">Entfernen</button>
           ${!isFree ? `<button class="redeem-btn" data-index="${index}">Mit Punkten einlösen</button>` : ''}
         `;
@@ -37,39 +37,30 @@ function updateCart() {
     totalPriceElement.textContent = `CHF ${total.toFixed(2)}`;
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Remove item from cart
     document.querySelectorAll('.remove-btn').forEach(button => {
         button.addEventListener('click', (e) => {
-            const index = parseInt(e.target.getAttribute('data-index'));
+            const index = e.target.getAttribute('data-index');
             cart.splice(index, 1);
             updateCart();
         });
     });
 
-    // Redeem item with points
     document.querySelectorAll('.redeem-btn').forEach(button => {
         button.addEventListener('click', (e) => {
-            const index = parseInt(e.target.getAttribute('data-index'));
+            const index = e.target.getAttribute('data-index');
             const item = cart[index];
             const user = JSON.parse(localStorage.getItem("userData"));
             const pointsInfo = pointsMenu.find(p => p.name === item.name);
+            if (!user || !pointsInfo) return;
 
-            if (!user || !pointsInfo) {
-                alert("Dieses Produkt kann nicht mit Punkten eingelöst werden.");
-                return;
-            }
-
-            const quantity = item.quantity || 1;
-            const cost = pointsInfo.points * quantity;
-
+            const cost = pointsInfo.points * (item.quantity || 1);
             if ((user.points || 0) >= cost) {
                 if (confirm(`Möchten Sie ${item.name} für ${cost} Punkte einlösen?`)) {
                     user.points -= cost;
                     cart[index].isFree = true;
                     localStorage.setItem("userData", JSON.stringify(user));
                     updateCart();
-                    updatePointsDisplay();
-                    showPointsEarnedPopup(-cost); // Optional: visual feedback
+                    updatePointsDisplay(); // update visible points
                 }
             } else {
                 alert("Nicht genügend Punkte, um diesen Artikel einzulösen.");
@@ -77,7 +68,6 @@ function updateCart() {
         });
     });
 
-    // Clear cart button
     const clearBtn = document.getElementById('clear-cart');
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
@@ -88,7 +78,6 @@ function updateCart() {
     }
 }
 
-// Update points on screen
 function updatePointsDisplay() {
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user && document.getElementById("points")) {
@@ -98,34 +87,12 @@ function updatePointsDisplay() {
 
 updateCart();
 
-
 const checkoutBtn = document.getElementById('checkout-btn');
 if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
         if (cart.length === 0) {
             alert('Ihr Warenkorb ist leer. Bitte fügen Sie Artikel hinzu.');
         } else {
-            // 🟡 Calculate points using custom formula before moving to next page
-            const user = JSON.parse(localStorage.getItem("userData"));
-            if (user) {
-                const total = cart.reduce((sum, item) => {
-                    const quantity = item.quantity || 1;
-                    const isFree = item.isFree === true;
-                    return sum + (isFree ? 0 : item.price * quantity);
-                }, 0);
-
-                let rawPoints = total * 0.15;
-                let roundedPoints = (rawPoints % 1 < 0.05) 
-                    ? Math.floor(rawPoints) 
-                    : Math.ceil(rawPoints);
-                let finalPoints = Math.max(1, roundedPoints);
-
-                user.points = (user.points || 0) + finalPoints;
-                localStorage.setItem("userData", JSON.stringify(user));
-                updatePointsDisplay();
-
-            }
-
             window.location.href = "info.html";
         }
     });

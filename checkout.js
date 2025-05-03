@@ -139,13 +139,13 @@ if (checkoutBtn) {
     cart.forEach(item => {
       const quantity = item.quantity || 1;
       const isFree = item.isFree === true;
-      const itemTotal = isFree ? 0 : item.price * quantity;
+      const itemTotal = isFree ? 0 : item.price * quantity;  // If it's free, set total to 0
       total += itemTotal;
-    
+
       const p = document.createElement('p');
-      p.textContent = `${item.name} x ${quantity} – ${isFree ? 'GRATIS (mit Punkten eingelöst)' : `CHF ${itemTotal.toFixed(2)}`}`;
+      p.textContent = `${item.name} x ${quantity} – CHF ${isFree ? 'GRATIS' : itemTotal.toFixed(2)}`;
       receiptContainer.appendChild(p);
-    });    
+    });
 
     const mwst = total * 0.026;
     const totalWithTax = total + mwst;
@@ -259,7 +259,7 @@ if (checkoutBtn) {
         estimatedMessage.textContent = message;
       }
 
-    }, 2000);
+    }, 60000);
 
     // **Option 2: Faster Progress for Presentation** - Updates every 15 seconds
     /*
@@ -328,25 +328,10 @@ function displayDeliveryInfo() {
 }
 displayDeliveryInfo();
 
-function showPointsEarnedPopup(points = 10) {
-  const popup = document.createElement('div');
-  popup.className = 'points-popup';
-  popup.innerHTML = `
-    🔥 <strong>Sie haben ${points} Punkte erhalten!</strong>
-    <div class="checkmark"></div>
-  `;
-  document.body.appendChild(popup);
+function addPointsForOrder(pointsToAdd = 10) {
+  const user = JSON.parse(localStorage.getItem("userData"));
+  if (!user) return;
 
-  // Animate checkmark after 1s
-  setTimeout(() => {
-    const checkmark = popup.querySelector('.checkmark');
-    if (checkmark) {
-      checkmark.innerHTML = '✔️';
-      checkmark.style.animation = 'checkmark-animation 1s ease-in-out forwards';
-    }
-  }, 1000);
-
-  // Remove popup after 2.5s
-  setTimeout(() => popup.remove(), 2500);
+  user.points = (user.points || 0) + pointsToAdd;
+  localStorage.setItem("userData", JSON.stringify(user));
 }
-
