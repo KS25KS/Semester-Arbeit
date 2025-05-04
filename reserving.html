@@ -112,19 +112,14 @@
             <input type="email" id="email" name="email" required>
            </div>
 
-           <label for="start">
-            Datum:
-        </label>
-    
-        <input type="date" name="begin" 
-               placeholder="dd-mm-yyyy" value="" 
-               min="2000-01-01" max="2050-12-31">
+           <input type="date" id="begin" name="begin" placeholder="dd-mm-yyyy" value="" min="2000-01-01" max="2050-12-31">
 
-
-               <form action="/action_page.php">
-                <label for="quantity">Anzahl:</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="12">
-            
+           
+          <div class="form-group">
+            <label for="quantity">Anzahl:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="12">
+          </div>
+        
 
            <div class="form-group">
             <label for="subject">Betreff:</label>
