@@ -16,6 +16,16 @@ document.getElementById('info-form').addEventListener('submit', function(e) {
 
   const type = orderType.value === "delivery" ? "Lieferung" : "Abholung";
   const name = nameField.value.trim();
+  const phoneInput = document.getElementById('phone').value.trim();
+
+  if (!/^\d{9}$/.test(phoneInput)) {
+    alert("Bitte geben Sie eine gültige 9-stellige Telefonnummer ein.");
+    return;
+  }
+  
+  const phone = '+41' + phoneInput;
+
+
   localStorage.setItem('orderType', type);
 
   // Ensure name is entered
@@ -42,9 +52,10 @@ document.getElementById('info-form').addEventListener('submit', function(e) {
     // Save delivery info in localStorage
     const deliveryInfo = {
       name,
+      phone,
       address,
       plz: postcode,
-      deliveryOption: type
+      deliveryOption: type    
     };
 
     localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
@@ -52,8 +63,10 @@ document.getElementById('info-form').addEventListener('submit', function(e) {
   } else {  // For 'pickup', no address needed
     const pickupInfo = {
       name,
+      phone,
       deliveryOption: type
     };
+    
 
     localStorage.setItem('pickupInfo', JSON.stringify(pickupInfo));
   }

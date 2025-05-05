@@ -93,7 +93,7 @@
     </nav>
     
 <body>
-  <<div class="container">
+  <div class="container">
     <h1>Liefer- oder Abholinformation</h1>
   
     <form id="info-form">
@@ -106,7 +106,22 @@
       <!-- Name field is always visible -->
       <label for="fullname">Vollständiger Name:</label>
       <input type="text" id="fullname">
-  
+      
+      <label for="phone">Telefonnummer:</label>
+      <div class="phone-input-wrapper">
+        <span class="country-code">+41</span>
+        <input
+          type="text"
+          id="phone"
+          maxlength="9"
+          pattern="\d{9}"
+          placeholder="781234567"
+          inputmode="numeric"
+          required
+        >
+      </div>
+      
+      
       <!-- Delivery fields only visible if 'Lieferung' is selected -->
       <div id="delivery-fields">
         <label for="address">Strasse und Hausnummer:</label>

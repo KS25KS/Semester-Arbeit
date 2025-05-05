@@ -48,6 +48,7 @@ function displayMenu(items) {
     const project = document.createElement('div');
     project.className = 'project';
 
+    // Create the 'Add to Cart' button
     const addToCartBtn = document.createElement('a');
     addToCartBtn.href = "#"; // No redirection
     addToCartBtn.className = "project-link";
@@ -65,6 +66,12 @@ function displayMenu(items) {
       showAddedPopup(item.name); // Show confirmation popup
     };
 
+    // Add the price below the description
+    const priceContainer = document.createElement('div');
+    priceContainer.className = 'price-container';
+    priceContainer.innerHTML = `<span class="price">CHF ${item.price.toFixed(2)}</span>`;
+
+    // Create the menu item card
     project.innerHTML = `
       <div class="project-image" style="background-image: url('${item.image}');"></div>
       <div class="project-content">
@@ -72,7 +79,12 @@ function displayMenu(items) {
         <p>${item.description}</p>
       </div>
     `;
+
+    // Append the price container and 'Add to Cart' button
+    project.querySelector('.project-content').appendChild(priceContainer);
     project.querySelector('.project-content').appendChild(addToCartBtn);
+
+    // Append the item to the menu container
     container.appendChild(project);
   });
 }

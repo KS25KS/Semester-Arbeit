@@ -61,6 +61,19 @@ function updateCart() {
 
   if (totalPriceElement) totalPriceElement.textContent = total.toFixed(2);
   if (checkoutPrice) checkoutPrice.textContent = total.toFixed(2);
+  const tax = total * 0.026;
+  const totalWithTax = total + tax;
+
+  if (document.getElementById('checkout-subtotal')) {
+    document.getElementById('checkout-subtotal').textContent = total.toFixed(2);
+  }
+  if (document.getElementById('checkout-tax')) {
+    document.getElementById('checkout-tax').textContent = tax.toFixed(2);
+  }
+  if (document.getElementById('checkout-total-amount')) {
+    document.getElementById('checkout-total-amount').textContent = totalWithTax.toFixed(2);
+  }
+
   localStorage.setItem('cart', JSON.stringify(cart));
 
   document.querySelectorAll('.remove-btn').forEach(button => {
@@ -110,7 +123,7 @@ if (checkoutBtn) {
     const cashInput = document.getElementById('cash-amount');
     const cashValue = parseFloat(cashInput?.value);
     const cashError = document.getElementById('cash-error');
-    const totalRequired = parseFloat(document.getElementById('checkout-price').textContent);
+    const totalRequired = parseFloat(document.getElementById('checkout-total-amount').textContent);
   
     let isValid = true;
   
@@ -310,6 +323,104 @@ if (checkoutBtn) {
     */
 
     addPointsForOrder();
+
+    // --- Discord Webhook Notification ---
+const webhookUrl = "https://discord.com/api/webhooks/1368948047672905811/2ELZI5sEMM3vMa393ljc87EuB8KwD3nNl1XnNdvlJ61KSDD59dMTZhwL7zVvczzgxxL1";
+
+const orderItems = cart.map(item => {
+  const quantity = item.quantity || 1;
+  const isFree = item.isFree === true;
+  const itemTotal = isFree ? 'GRATIS' : `CHF ${ (item.price * quantity).toFixed(2) }`;
+  return `${item.name} x${quantity} – ${itemTotal}`;
+}).join('\n');
+
+let bargeldValue = "";
+if (selectedPaymentMethod === "Bargeld") {
+  bargeldValue = `CHF ${cashValue.toFixed(2)}`;
+}
+
+const embed = {
+  username: "Bestellung 📦",
+  avatar_url: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png",
+  embeds: [
+    {
+      title: "📥 Neue Bestellung eingegangen!",
+      color: 0x2ECC71,
+      fields: [
+        {
+          name: "🛒 Artikel",
+          value: orderItems || "Keine Artikel",
+        },
+        {
+          name: "💰 Zwischensumme",
+          value: `CHF ${total.toFixed(2)}`,
+          inline: true
+        },
+        {
+          name: "🧾 MWST (2.6%)",
+          value: `CHF ${mwst.toFixed(2)}`,
+          inline: true
+        },
+        {
+          name: "📦 Gesamtbetrag",
+          value: `CHF ${totalWithTax.toFixed(2)}`,
+          inline: true
+        },
+        {
+          name: "💳 Zahlungsmethode",
+          value: selectedPaymentMethod,
+          inline: true
+        },
+        ...(selectedPaymentMethod === "Bargeld" ? [{
+          name: "💵 Gegebenes Bargeld",
+          value: bargeldValue,
+          inline: true
+        }] : []),
+        
+        ...(userData ? [
+          {
+            name: "👤 Name",
+            value: userData.name || "-",
+            inline: true
+          },
+          {
+            name: "📞 Telefon",
+            value: userData.phone || "-",
+            inline: true
+          },
+          {
+            name: "🚚 Option",
+            value: userData.deliveryOption,
+            inline: true
+          },
+          ...(userData.deliveryOption === "Lieferung" ? [
+            {
+              name: "🏠 Adresse",
+              value: userData.address || "-",
+              inline: false
+            },
+            {
+              name: "📮 PLZ",
+              value: userData.plz || "-",
+              inline: true
+            }
+          ] : [])
+        ] : [])
+      ],
+      footer: {
+        text: `Bestellnummer: ${orderNumber} – ${formattedDate}`
+      },
+      timestamp: new Date().toISOString()
+    }
+  ]
+};
+
+fetch(webhookUrl, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(embed)
+});
+
 
     // Clear the cart
     cart = [];

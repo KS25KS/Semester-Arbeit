@@ -62,4 +62,47 @@ body {
   #delivery-fields {
     transition: all 0.3s ease;
   }
+
+  .phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: white;
+    height: 44px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  .phone-input-wrapper .country-code {
+    padding: 0 12px;
+    background-color: transparent;
+    color: #444;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #33333366; /* subtle grey line */
+  }
+  
+  .phone-input-wrapper input {
+    flex: 1;
+    border: none;
+    padding: 10px 12px;
+    font-size: 1rem;
+    height: 44px;
+    outline: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    line-height: 1.5;
+  }
+
+  ::placeholder {
+    color: #aaa;
+  }
+
+  .phone-input-wrapper:focus-within {
+    border-color: #635bff;
+    box-shadow: 0 0 0 2px #635bff33;
+  }
   

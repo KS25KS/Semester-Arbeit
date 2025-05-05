@@ -8,7 +8,17 @@
   { "name": "Peri Bites", "points": 1200 },
   { "name": "Potato Chips", "points": 600 },
   { "name": "Spicy Chicken Wings", "points": 1500 },
-  { "name": "Spicy Rotisserie Chicken", "points": 3000 },
-  { "name": "Mild Rotisserie Chicken", "points": 2700 },
-  { "name": "Grilled Chicken Breast with grilled Vegetables", "points": 1800 }
+  { "name": "Spicy Butterfly Rotisserie Chicken", "points": 2700 },
+  { "name": "Mild Rotisserie Chicken", "points": 3000 },
+  { "name": "Grilled Chicken Breast with grilled Vegetables", "points": 1800 },
+
+  { "name": "Cola", "points": 350 },
+  { "name": "Fanta", "points": 350 },
+  { "name": "Rivella", "points": 350 },
+  { "name": "Mineralwasser", "points": 200 },
+  { "name": "Eistee (Nestea)", "points": 350 },
+  { "name": "Sprite", "points": 350 },
+  { "name": "Fruchtsaft (Fresh Made Juice)", "points": 450 }
+  
+  
 ]
