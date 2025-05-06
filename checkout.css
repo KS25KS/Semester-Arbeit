@@ -178,6 +178,17 @@ h1, h2 {
   border-bottom: 1px solid #ccc;
   padding-bottom: 8px;
 }
+#receipt-items {
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto;
+  padding-right: 10px; /* optional: prevent cut-off of scrollbar */
+}
+
+.scrollable-receipt {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 
 .receipt-item {
   display: flex;
