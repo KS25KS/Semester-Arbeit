@@ -7,3 +7,12 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: tu0n7k.ftp.infomaniak.com
+        username: ${{ secrets.FTPUSERNAME }}
+        password: ${{ secrets.FTPPASSWORD }}
+        protocol: ftps
+        server-dir: /mrcodify.com/
