@@ -10,7 +10,7 @@ links.forEach(link => {
       // Add 'active' class to the clicked link
       this.classList.add('active');
   });
-});
+} );
 
 
 //mobile menu
