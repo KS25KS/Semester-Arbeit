@@ -12,13 +12,13 @@
   { "name": "Mild Rotisserie Chicken", "points": 3000 },
   { "name": "Grilled Chicken Breast with grilled Vegetables", "points": 1800 },
 
-  { "name": "Cola", "points": 350 },
-  { "name": "Fanta", "points": 350 },
-  { "name": "Rivella", "points": 350 },
-  { "name": "Mineralwasser", "points": 200 },
-  { "name": "Eistee (Nestea)", "points": 350 },
-  { "name": "Sprite", "points": 350 },
-  { "name": "Fruchtsaft (Fresh Made Juice)", "points": 450 }
+  { "name": "Cola", "points": 450 },
+  { "name": "Fanta", "points": 450 },
+  { "name": "Rivella", "points": 450 },
+  { "name": "Mineralwasser", "points": 400 },
+  { "name": "Eistee (Nestea)", "points": 450 },
+  { "name": "Sprite", "points": 450 },
+  { "name": "Fruchtsaft (Fresh Made Juice)", "points": 650 }
   
   
 ]

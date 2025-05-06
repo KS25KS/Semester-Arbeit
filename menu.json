@@ -128,49 +128,49 @@
   {
     "name": "Cola",
     "description": "Eine erfrischende Cola. Der ideale Durstlöscher für alle Gelegenheiten.",
-    "price": 3.50,
+    "price": 4.50,
     "image": "./images/cola.jpg",
     "category": "Soft Drinks"
   },
   {
     "name": "Fanta",
     "description": "Fruchtig und spritzig. Ein Glas Fanta mit dem vollen Geschmack von frischen Orangen. Ein erfrischender Genuss, der einfach gute Laune macht.",
-    "price": 3.50,
+    "price": 4.50,
     "image": "./images/fanta.png",
     "category": "Soft Drinks"
   },
   {
     "name": "Rivella",
     "description": "Das Schweizer Original! Rivella ist ein einzigartiges Erfrischungsgetränk mit dem Geschmack von Molke. ",
-    "price": 3.50,
+    "price": 4.50,
     "image": "./images/rivella.jpg",
     "category": "Soft Drinks"
   },
   {
     "name": "Mineralwasser",
     "description": "Stilles Mineralwasser aus den Schweizer Alpen. Erfrischend rein und ideal, um den Durst auf natürliche Weise zu löschen.",
-    "price": 2.00,
+    "price": 4.00,
     "image": "./images/water.jpg",
     "category": "Soft Drinks"
   },
   {
     "name": "Eistee (Nestea)",
     "description": "Kalt, erfrischend und süss. Nestea Eistee bringt den Geschmack von frisch gebrautem Tee direkt in deine Hand. Perfekt für heisse Tage.",
-    "price": 3.50,
+    "price": 4.50,
     "image": "./images/eistee.jpg",
     "category": "Soft Drinks"
   },
   {
     "name": "Sprite",
     "description": "Spritzig, erfrischend und ein Hauch Zitrone. Sprite ist der perfekte, leichte Durstlöscher mit einer angenehmen frischen Zitronennote.",
-    "price": 3.50,
+    "price": 4.50,
     "image": "./images/sprite.jpg",
     "category": "Soft Drinks"
   },
   {
     "name": "Fruchtsaft (Fresh Made Juice)",
     "description": "Erfrischender, frisch gepresster Fruchtsaft. Wahlweise Orange, Apfel oder eine leckere Mischung. Natürlicher Fruchtgenuss ohne Zusatzstoffe!",
-    "price": 4.50,
+    "price": 6.50,
     "image": "./images/fruchtsaft.jpg",
     "category": "Soft Drinks"
   }
