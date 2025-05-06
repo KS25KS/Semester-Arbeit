@@ -95,6 +95,7 @@ body {
     background-color: transparent;
     box-sizing: border-box;
     line-height: 1.5;
+    margin-top: 23px;
   }
 
   ::placeholder {
