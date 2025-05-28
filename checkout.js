@@ -209,20 +209,59 @@ function updateCart() {
 // --- PAYMENT METHOD TOGGLE LOGIC ---
 let selectedPaymentMethod = null;
 
-document.querySelectorAll('.payment-toggle').forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    // Hide all
+// document.querySelectorAll('.payment-toggle').forEach(toggle => { // OLD: Listener on h4
+document.querySelectorAll('.payment-option').forEach(optionDiv => { // NEW: Listener on the entire div
+  // toggle.addEventListener('click', () => { OLD
+  optionDiv.addEventListener('click', () => { // NEW
+    const toggleElement = optionDiv.querySelector('.payment-toggle'); // Get the h4 inside
+    if (!toggleElement) {
+      console.error('Payment toggle element not found in option:', optionDiv);
+      return; // Should not happen if HTML is correct
+    }
+
+    // Hide all payment details sections
     document.querySelectorAll('.payment-details').forEach(detail => {
       detail.classList.add('hidden');
     });
 
-    // Set and show selected
-    const method = toggle.getAttribute('data-method');
-    selectedPaymentMethod = method;
+    // Remove 'selected' class from all options
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
 
-    const details = toggle.parentElement.querySelector('.payment-details');
+    // Show this one's details
+    const details = optionDiv.querySelector('.payment-details');
     if (details) {
       details.classList.remove('hidden');
+    }
+
+    // Add 'selected' class to this option
+    optionDiv.classList.add('selected');
+
+    // Update selected payment method
+    selectedPaymentMethod = toggleElement.dataset.method; // Get method from h4's data-method
+    console.log("Selected payment method:", selectedPaymentMethod);
+
+    // Clear cash input if another method is selected
+    const cashInput = document.getElementById('cash-amount');
+    if (selectedPaymentMethod !== 'Bargeld' && cashInput) {
+      cashInput.value = '';
+      const cashError = document.getElementById('cash-error');
+      if (cashError) cashError.style.display = 'none';
+    }
+    // Clear card inputs if another method is selected
+    if (selectedPaymentMethod !== 'Kreditkarte') {
+      const fieldsToClear = [
+        { input: creditCardInput, error: errorMessage },
+        { input: cardholderNameInput, error: cardholderNameError },
+        { input: expiryDateInput, error: expiryDateError },
+        { input: cvvInput, error: cvvError }
+      ];
+      fieldsToClear.forEach(field => {
+        if (field.input) field.input.value = '';
+        if (field.error) field.error.style.display = 'none';
+      });
+      if (cardTypeIconElement) cardTypeIconElement.innerHTML = '';
     }
   });
 });
