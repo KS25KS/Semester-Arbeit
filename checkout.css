@@ -337,96 +337,122 @@ h2 {
 
 .payment-option h4 i {
   margin-right: 10px;
-  color: #635bff;
+  color: #635bff; /* Default icon color */
 }
 
-.payment-option p {
-  font-size: 16px;
-  color: #555;
+/* Specific styling for Cash Option to make it less "ugly" */
+#cash-option h4 {
+  color: #1a652f; /* Dark green text for cash option title */
+}
+
+#cash-option h4 i {
+  color: #28a745; /* Brighter green icon for cash */
+}
+
+#cash-option:hover {
+  border-color: #28a745; /* Green border on hover for cash option */
+  /* It will inherit other hover effects like transform and box-shadow from .payment-option */
+}
+
+#cash-option.selected {
+  border-color: #28a745; /* Green border when selected for cash option */
+  background-color: #e6f4e6; /* Light green background when selected for cash option */
 }
 
 /* === Credit Card Input === */
 .credit-card-input-wrapper {
-  position: relative; /* For positioning the icon absolutely */
-  display: flex; /* Aligns input and icon if icon were outside */
+  position: relative;
+  display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Maintain spacing if #credit-card-number had it */
+  margin-bottom: 15px; /* Increased margin for better spacing */
 }
 
 #credit-card-number {
   width: 100%;
-  padding: 12px;
+  padding: 14px 18px; /* Slightly increased padding */
+  padding-right: 45px; /* Make space for the icon inside the input */
   font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ced4da; /* Lighter border color */
+  border-radius: 8px; /* Slightly more rounded corners */
   box-sizing: border-box;
-  padding-right: 40px; /* Make space for the icon inside the input */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transitions */
+}
+
+#credit-card-number:focus {
+  border-color: #635bff; /* Your theme color for focus */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(99, 91, 255, 0.25); /* Subtle focus glow */
 }
 
 .card-type-icon {
   position: absolute;
-  right: 15px; /* Position icon towards the right end of the input */
+  right: 18px; /* Adjusted position */
   top: 50%;
-  transform: translateY(-50%); /* Vertically center the icon */
-  font-size: 24px; /* Adjust icon size as needed */
-  color: #777; /* Default icon color */
-  pointer-events: none; /* So it doesn't interfere with input focus */
+  transform: translateY(-50%);
+  font-size: 26px; /* Slightly larger icon */
+  color: #adb5bd; /* Lighter icon color */
+  pointer-events: none;
 }
 
-/* Ensure other input styles don't conflict */
+/* General styling for other input fields */
 #cardholder-name,
 #expiry-date,
-#cvv {
+#cvv,
+#cash-amount { /* Added #cash-amount here */
   width: 100%;
-  padding: 12px;
+  padding: 14px 18px; /* Consistent padding */
   font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  border: 1px solid #ced4da; /* Consistent lighter border */
+  border-radius: 8px; /* Consistent rounded corners */
+  margin-bottom: 15px; /* Consistent margin */
   box-sizing: border-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transitions */
 }
 
-#credit-card-number:focus,
+/* Focus state for these fields */
 #cardholder-name:focus,
 #expiry-date:focus,
-#cvv:focus {
-  border-color: #4caf50; /* Or your theme color */
-  outline: none;
+#cvv:focus,
+#cash-amount:focus { /* Added #cash-amount here */
+  border-color: #635bff; /* Your theme color for focus */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(99, 91, 255, 0.25); /* Subtle focus glow */
 }
+
+/* Styling for input field labels */
+.payment-details label {
+  display: block;
+  margin-bottom: 8px; /* Increased space below label */
+  font-weight: 500; /* Slightly bolder */
+  color: #495057; /* Darker label color for better contrast */
+  font-size: 15px; /* Slightly adjusted font size */
+}
+
+.payment-details label i.fa-solid,
+.payment-details label i.fa-regular { /* Added fa-regular for cash icon */
+  margin-right: 10px; /* Increased space next to icon */
+  color: #6c757d; /* Consistent icon color */
+  width: 1.1em;
+  text-align: center;
+}
+
 
 #credit-card-error,
 #cardholder-name-error,
 #expiry-date-error,
-#cvv-error {
-  color: red;
+#cvv-error,
+#cash-error { /* Added #cash-error here */
+  color: #dc3545; /* Standard error red */
   font-size: 14px;
   display: none;
-  margin-top: -5px;
+  margin-top: -10px; /* Adjust to pull error message closer to input */
   margin-bottom: 10px;
-}
-
-.payment-details label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #333;
-}
-
-.payment-details label i.fa-solid {
-  margin-right: 8px;
-  color: #555; /* Adjust icon color if needed */
-  width: 1em; /* Helps align icons if they have different widths */
-  text-align: center;
 }
 
 .card-details-row {
   display: flex;
-  gap: 15px; /* Space between expiry and CVV fields */
-  align-items: flex-start; /* Align items at the start if they have different heights due to error messages */
-}
-
-.card-details-row > div {
-  flex: 1; /* Allow fields to grow and share space */
+  gap: 20px; /* Increased gap */
+  align-items: flex-start;
 }
 
 /* === Payment Logos === */
