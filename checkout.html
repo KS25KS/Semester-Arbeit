@@ -117,9 +117,29 @@
                 <i class="fa-solid fa-credit-card fa-xl"></i> Kreditkarte
               </h4>
               <div class="payment-details hidden">
-                <label for="credit-card-number">Kreditkartennummer:</label>
-                <input type="text" id="credit-card-number" placeholder="1234 5678 9101 1121" maxlength="16" />
-                <span id="credit-card-error" class="error-message">Bitte geben Sie eine gültige Kreditkartennummer ein (mindestens 16 Ziffern).</span>
+                <label for="cardholder-name"><i class="fa-solid fa-user"></i> Karteninhabername:</label>
+                <input type="text" id="cardholder-name" placeholder="Max Mustermann" autocomplete="cc-name">
+                <span id="cardholder-name-error" class="error-message" style="display: none;">Bitte geben Sie den Namen des Karteninhabers ein.</span>
+
+                <label for="credit-card-number"><i class="fa-solid fa-credit-card"></i> Kreditkartennummer:</label>
+                <div class="credit-card-input-wrapper"> <!-- Add this wrapper -->
+                  <input type="text" id="credit-card-number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" autocomplete="cc-number" inputmode="numeric">
+                  <span id="card-type-icon" class="card-type-icon"></span> <!-- Add this span for the icon -->
+                </div>
+                <span id="credit-card-error" class="error-message" style="display: none;">Bitte geben Sie eine gültige Kreditkartennummer ein.</span>
+
+                <div class="card-details-row">
+                  <div>
+                    <label for="expiry-date"><i class="fa-solid fa-calendar-days"></i> Ablaufdatum (MM/JJ):</label>
+                    <input type="text" id="expiry-date" placeholder="MM/JJ" maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+                    <span id="expiry-date-error" class="error-message" style="display: none;">Ungültiges Ablaufdatum.</span>
+                  </div>
+                  <div>
+                    <label for="cvv"><i class="fa-solid fa-lock"></i> CVV:</label>
+                    <input type="text" id="cvv" placeholder="XXX" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+                    <span id="cvv-error" class="error-message" style="display: none;">Ungültiger CVV.</span>
+                  </div>
+                </div>
               </div>
             </div>
       
@@ -137,8 +157,18 @@
       
             <!-- Twint Section -->
             <div class="payment-option" id="twint-option">
-              <img src="images/twint.png" alt="Twint" class="payment-logo" style="width: 40px; margin: 5px;">
-              <p>Nummer: +41 12 345 67 89</p>
+              <h4 class="payment-toggle" data-method="Twint">
+                <img src="images/twint.png" alt="Twint Logo" style="width: 30px; height: 30px; margin-right: 10px; vertical-align: middle;"> Twint
+              </h4>
+              <div class="payment-details hidden">
+                <p>Bitte zahlen Sie an die folgende Nummer: <strong>+41 12 345 67 89</strong> (Beispielnummer)</p>
+                <p><em>Geben Sie Ihre Bestellnummer als Referenz an.</em></p>
+                <p style="margin-top: 15px; text-align: center;">Oder scannen Sie den QR-Code:</p>
+                <div class="twint-qr-code-container"> <!-- Add this wrapper -->
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://mrcodify.com" alt="QR Code für mrcodify.com" class="twint-qr-image"> <!-- Remove inline styles, add class -->
+                </div>
+                <p style="font-size: 0.8em; text-align: center; margin-top: 5px;">(Dieser QR-Code führt zu mrcodify.com)</p>
+              </div>
             </div>
           </div>
         </div>
@@ -203,7 +233,7 @@
     
     
     
+    <script src="cardUtils.js"></script>
     <script src="checkout.js"></script>
-    
-  </body>
-  
+</body>
+</html>

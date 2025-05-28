@@ -33,7 +33,6 @@
   background-color: #218838;
 }
 
-
 /* === Modal === */
 .modal-overlay {
   position: fixed;
@@ -90,19 +89,19 @@
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: scale(0.95);
+    opacity: 0;
+    transform: scale(0.95);
   }
 
   to {
-      opacity: 1;
-      transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 /* === Global Styles === */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f9f9f9;
@@ -118,7 +117,8 @@ body {
   border-radius: 12px;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   margin-bottom: 30px;
 }
@@ -189,7 +189,6 @@ h1, h2 {
   overflow-y: auto;
 }
 
-
 .receipt-item {
   display: flex;
   justify-content: space-between;
@@ -231,42 +230,42 @@ h1, h2 {
 
 /* === Truck Progress Bar === */
 .order-progress {
-margin-top: 20px;
-padding: 20px;
-border: 1px solid #ccc;
-border-radius: 8px;
-background-color: #f9f9f9;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
 .progress-bar-container {
-width: 100%;
-background-color: #ddd;
-border-radius: 10px;
-overflow: hidden;
-height: 30px;
-position: relative;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 30px;
+  position: relative;
 }
 
 .progress-bar {
-height: 100%;
-width: 0;
-background: linear-gradient(135deg, #2196F3 /* #8b0202 */, #0d7b0d);
-transition: width 1s ease;
-border-radius: 10px;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(135deg, #2196f3 /* #8b0202 */, #0d7b0d);
+  transition: width 1s ease;
+  border-radius: 10px;
 }
 
 #truck-icon {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-left: 0%; /* Start at 0% */
-font-size: 24px;
-color: #333;
-transition: left 1s ease; /* Smooth movement */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0%; /* Start at 0% */
+  font-size: 24px;
+  color: #333;
+  transition: left 1s ease; /* Smooth movement */
 }
 
 #progress-text {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 /* === Payment Section (Stripe-style) === */
@@ -319,26 +318,87 @@ margin-top: 10px;
 }
 
 /* === Credit Card Input === */
+.credit-card-input-wrapper {
+  position: relative; /* For positioning the icon absolutely */
+  display: flex; /* Aligns input and icon if icon were outside */
+  align-items: center;
+  margin-bottom: 10px; /* Maintain spacing if #credit-card-number had it */
+}
+
 #credit-card-number {
-  width: 250px; /* Adjust the width as needed */
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding-right: 40px; /* Make space for the icon inside the input */
+}
+
+.card-type-icon {
+  position: absolute;
+  right: 15px; /* Position icon towards the right end of the input */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the icon */
+  font-size: 24px; /* Adjust icon size as needed */
+  color: #777; /* Default icon color */
+  pointer-events: none; /* So it doesn't interfere with input focus */
+}
+
+/* Ensure other input styles don't conflict */
+#cardholder-name,
+#expiry-date,
+#cvv {
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 2px solid #ccc;
   border-radius: 6px;
   margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+#credit-card-number:focus,
+#cardholder-name:focus,
+#expiry-date:focus,
+#cvv:focus {
+  border-color: #4caf50; /* Or your theme color */
   outline: none;
-  transition: border 0.3s ease;
 }
 
-#credit-card-number:focus {
-  border-color: #4CAF50;
-}
-
-#credit-card-error {
+#credit-card-error,
+#cardholder-name-error,
+#expiry-date-error,
+#cvv-error {
   color: red;
   font-size: 14px;
   display: none;
-  margin-top: 5px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.payment-details label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.payment-details label i.fa-solid {
+  margin-right: 8px;
+  color: #555; /* Adjust icon color if needed */
+  width: 1em; /* Helps align icons if they have different widths */
+  text-align: center;
+}
+
+.card-details-row {
+  display: flex;
+  gap: 15px; /* Space between expiry and CVV fields */
+  align-items: flex-start; /* Align items at the start if they have different heights due to error messages */
+}
+
+.card-details-row > div {
+  flex: 1; /* Allow fields to grow and share space */
 }
 
 /* === Payment Logos === */
@@ -370,7 +430,8 @@ margin-top: 10px;
 }
 
 /* === Bargeld input and label === */
-#bargeld-label, #bargeld-input {
+#bargeld-label,
+#bargeld-input {
   display: none;
   margin-top: 10px;
   font-size: 14px;
@@ -383,23 +444,42 @@ margin-top: 10px;
   width: 100%;
 }
 
+/* === Twint QR Code Styling === */
+.twint-qr-code-container {
+  display: block; /* Allows margin auto for centering */
+  width: -moz-fit-content; /* Firefox */
+  width: fit-content; /* Modern browsers */
+  margin: 15px auto; /* Center the container and add vertical margin */
+  padding: 10px; /* Creates a white space between the red border and the QR image */
+  border: 3px solid #e50000; /* Twint's characteristic red color */
+  border-radius: 8px; /* Slightly rounded corners for the red border */
+  background-color: white; /* Ensures the padding area is white */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: subtle shadow for depth */
+}
+
+.twint-qr-image {
+  display: block; /* Removes any extra space below the image if it were inline */
+  width: 120px; /* Matches the size specified in the QR code URL */
+  height: 120px; /* Matches the size specified in the QR code URL */
+}
+
 /* === Responsive === */
 @media (max-width: 600px) {
   .payment-options {
-      gap: 10px;
+    gap: 10px;
   }
 
   .payment-logos .logos {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .receipt-item {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .receipt-item span {
-      margin-top: 4px;
+    margin-top: 4px;
   }
 }
 
@@ -432,19 +512,36 @@ margin-top: 10px;
 }
 
 @keyframes checkmark-animation {
-  0% { opacity: 0; transform: scale(0); }
-  50% { opacity: 1; transform: scale(1.5); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fadein {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeout {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-
-

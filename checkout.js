@@ -1,16 +1,128 @@
+// The getCardType function definition has been removed from this file
+// as it is now located in cardUtils.js.
+
 // Credit Card Validation
 const creditCardInput = document.getElementById('credit-card-number');
 const errorMessage = document.getElementById('credit-card-error');
+const cardholderNameInput = document.getElementById('cardholder-name');
+const cardholderNameError = document.getElementById('cardholder-name-error');
+const expiryDateInput = document.getElementById('expiry-date');
+const expiryDateError = document.getElementById('expiry-date-error');
+const cvvInput = document.getElementById('cvv');
+const cvvError = document.getElementById('cvv-error');
+const cardTypeIconElement = document.getElementById('card-type-icon'); // Get the icon span
 
-// Validate Credit Card Number Input
-creditCardInput.addEventListener('input', () => {
-  const cardValue = creditCardInput.value;
-  if (cardValue.length >= 16 && /^\d+$/.test(cardValue)) {
-    errorMessage.style.display = 'none';
-  } else {
-    errorMessage.style.display = 'block';
-  }
-});
+// Validate Credit Card Number Input (formatting part)
+if (creditCardInput) {
+  creditCardInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    let formattedValue = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+        formattedValue += ' ';
+      }
+      formattedValue += value[i];
+    }
+    e.target.value = formattedValue.trim();
+
+    // Detect and display card type icon
+    if (cardTypeIconElement && typeof getCardType === 'function') { // Check if getCardType is available
+      const rawCardNumber = value; // Use the unformatted, digits-only value
+      const cardType = getCardType(rawCardNumber); // Call the function from cardUtils.js
+
+      let iconClass = '';
+      switch (cardType) {
+        case 'visa':
+          iconClass = 'fa-brands fa-cc-visa';
+          break;
+        case 'mastercard':
+          iconClass = 'fa-brands fa-cc-mastercard';
+          break;
+        case 'amex':
+          iconClass = 'fa-brands fa-cc-amex';
+          break;
+        case 'discover':
+          iconClass = 'fa-brands fa-cc-discover';
+          break;
+        case 'diners':
+          iconClass = 'fa-brands fa-cc-diners-club';
+          break;
+        case 'jcb':
+          iconClass = 'fa-brands fa-cc-jcb';
+          break;
+        default:
+          // Optionally, show a generic card icon if unknown but input has started
+          if (rawCardNumber.length > 0) {
+            iconClass = 'fa-solid fa-credit-card'; // Generic card icon
+          } else {
+            iconClass = ''; // Clear icon if input is empty
+          }
+          break;
+      }
+      cardTypeIconElement.innerHTML = iconClass ? `<i class="${iconClass}"></i>` : '';
+    } else if (cardTypeIconElement) {
+        cardTypeIconElement.innerHTML = ''; // Clear if getCardType is not found
+    }
+    // Validation will be handled in the checkout button click
+  });
+}
+
+// Validate Cardholder Name
+if (cardholderNameInput) {
+  cardholderNameInput.addEventListener('input', () => {
+    if (cardholderNameInput.value.trim().length > 0) {
+      cardholderNameError.style.display = 'none';
+    } else {
+      cardholderNameError.style.display = 'block';
+    }
+  });
+}
+
+// Format and Validate Expiry Date Input
+if (expiryDateInput) {
+  expiryDateInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 2) {
+      value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+    e.target.value = value;
+
+    if (/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) {
+      const [month, yearSuffix] = value.split('/').map(num => parseInt(num, 10));
+      const currentYear = new Date().getFullYear();
+      const currentMonth = new Date().getMonth() + 1;
+      const inputYear = 2000 + yearSuffix; // Assuming years are 20xx
+
+      if (inputYear < currentYear || (inputYear === currentYear && month < currentMonth)) {
+        expiryDateError.textContent = 'Karte ist abgelaufen.';
+        expiryDateError.style.display = 'block';
+      } else {
+        expiryDateError.style.display = 'none';
+      }
+    } else if (value.length === 5) { // Only show error if fully typed incorrectly
+      expiryDateError.textContent = 'Ungültiges Format (MM/JJ).';
+      expiryDateError.style.display = 'block';
+    } else {
+      expiryDateError.style.display = 'none'; // Hide if not fully typed or partially correct
+    }
+  });
+}
+
+// Validate CVV Input
+if (cvvInput) {
+  cvvInput.addEventListener('input', () => {
+    const cvvValue = cvvInput.value.replace(/\D/g, '');
+    cvvInput.value = cvvValue;
+    if (cvvValue.length >= 3 && cvvValue.length <= 4) {
+      cvvError.style.display = 'none';
+    } else if (cvvValue.length > 0 && cvvValue.length < 3) { // Show error only if something is typed and too short
+      cvvError.textContent = 'CVV muss 3-4 Ziffern lang sein.';
+      cvvError.style.display = 'block';
+    } else {
+      cvvError.style.display = 'none';
+    }
+  });
+}
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let pointsMenu = [];  // Declare a variable to hold the points menu data
@@ -119,11 +231,16 @@ document.querySelectorAll('.payment-toggle').forEach(toggle => {
 const checkoutBtn = document.getElementById('checkout-button');
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
-    const cardValue = creditCardInput.value;
+    const rawCardValue = creditCardInput ? creditCardInput.value.replace(/\s/g, '') : ''; // Remove spaces for validation
     const cashInput = document.getElementById('cash-amount');
-    const cashValue = parseFloat(cashInput?.value);
+    const cashValue = cashInput ? parseFloat(cashInput.value) : NaN;
     const cashError = document.getElementById('cash-error');
-    const totalRequired = parseFloat(document.getElementById('checkout-total-amount').textContent);
+    const totalRequiredText = document.getElementById('checkout-total-amount')?.textContent;
+    const totalRequired = totalRequiredText ? parseFloat(totalRequiredText) : 0;
+    
+    const cardholderNameValue = cardholderNameInput ? cardholderNameInput.value.trim() : '';
+    const expiryDateValue = expiryDateInput ? expiryDateInput.value : '';
+    const cvvValue = cvvInput ? cvvInput.value : '';
   
     let isValid = true;
   
@@ -133,11 +250,54 @@ if (checkoutBtn) {
     }
   
     if (selectedPaymentMethod === 'Kreditkarte') {
-      if (cardValue.length < 16 || !/^\d+$/.test(cardValue)) {
-        errorMessage.style.display = 'block';
+      // Cardholder Name Validation
+      if (cardholderNameValue.length === 0) {
+        if(cardholderNameError) cardholderNameError.style.display = 'block';
         isValid = false;
       } else {
-        errorMessage.style.display = 'none';
+        if(cardholderNameError) cardholderNameError.style.display = 'none';
+      }
+
+      // Credit Card Number Validation
+      if (!(rawCardValue.length >= 13 && rawCardValue.length <= 19 && /^\d+$/.test(rawCardValue))) {
+        if(errorMessage) errorMessage.style.display = 'block';
+        isValid = false;
+      } else {
+        if(errorMessage) errorMessage.style.display = 'none';
+      }
+
+      // Expiry Date Validation
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDateValue)) {
+        if(expiryDateError) {
+            expiryDateError.textContent = 'Ungültiges Format (MM/JJ).';
+            expiryDateError.style.display = 'block';
+        }
+        isValid = false;
+      } else {
+        const [month, yearSuffix] = expiryDateValue.split('/').map(num => parseInt(num, 10));
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth() + 1;
+        const inputYear = 2000 + yearSuffix;
+        if (inputYear < currentYear || (inputYear === currentYear && month < currentMonth)) {
+          if(expiryDateError) {
+            expiryDateError.textContent = 'Karte ist abgelaufen.';
+            expiryDateError.style.display = 'block';
+          }
+          isValid = false;
+        } else {
+          if(expiryDateError) expiryDateError.style.display = 'none';
+        }
+      }
+
+      // CVV Validation
+      if (!(cvvValue.length >= 3 && cvvValue.length <= 4 && /^\d+$/.test(cvvValue))) {
+        if(cvvError) {
+            cvvError.textContent = 'CVV muss 3-4 Ziffern lang sein.';
+            cvvError.style.display = 'block';
+        }
+        isValid = false;
+      } else {
+        if(cvvError) cvvError.style.display = 'none';
       }
     } else if (selectedPaymentMethod === 'Bargeld') {
       if (totalRequired === 0) {
@@ -325,7 +485,7 @@ if (checkoutBtn) {
     addPointsForOrder();
 
     // --- Discord Webhook Notification ---
-const webhookUrl = "https://discord.com/api/webhooks/1368948047672905811/2ELZI5sEMM3vMa393ljc87EuB8KwD3nNl1XnNdvlJ61KSDD59dMTZhwL7zVvczzgxxL1";
+const webhookUrl = "https://discord.com/api/webhooks/1377073850306789406/OLGjuDHQGVwXnHiD85dV904-xzgzNMQD301j4i4smES4jDTiW73tezDGcXIMMC4awTyl";
 
 const orderItems = cart.map(item => {
   const quantity = item.quantity || 1;
