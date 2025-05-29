@@ -500,27 +500,6 @@ if (checkoutBtn) {
 
     }, 60000);
 
-    // **Option 2: Faster Progress for Presentation** - Updates every 15 seconds
-    /*
-    const presentationInterval = setInterval(() => {
-      progress += 100 / (estimatedTime * 4); // Faster updates
-
-      currentTime -= 0.25; // Each 15 seconds is 0.25 minute
-
-      if (progress >= 100 || currentTime <= 0) {
-        progress = 100;
-        currentTime = 0;
-        clearInterval(presentationInterval);
-        progressText.textContent = "Bestellung abgeschlossen!";
-      }
-
-      progressBar.style.width = progress + "%";
-      truckIcon.style.left = progress + "%";
-      document.getElementById('estimated-time').textContent = Math.ceil(currentTime);
-
-    }, 15000);
-    */
-
     addPointsForOrder();
 
     // --- Discord Webhook Notification ---
