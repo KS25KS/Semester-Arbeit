@@ -19,7 +19,7 @@ document.getElementById('reservedForm').addEventListener('submit', function(e) {
     const webhookBody = {
         embeds: [{
             title: "New Reservation Form Submission",
-            color: 0x7289DA, // Discord blue color
+            color: 0x7289DA,
             fields: [
                 {
                     name: "Name",
