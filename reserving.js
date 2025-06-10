@@ -61,7 +61,7 @@ document.getElementById('reservedForm').addEventListener('submit', function(e) {
         }]
     };
 
-    const webhookUrl = 'https://discord.com/api/webhooks/1382048834598735992/2sSXHpx6F8CBj9aKnAJaCIKu2vMng0q6mxkQIe6FTMAXq58Qq-18IQnYjRrGZb8I2YYM';
+    const webhookUrl = 'https://discord.com/api/webhooks/1382050107352158228/Ye8Pc75FAhYbKKzbnisANXlMh9B6WZ3wBhdqq_-MR4I91Ob79aruwHaMkxQqxIIzjnBF';
 
     fetch(webhookUrl, {
         method: 'POST',
