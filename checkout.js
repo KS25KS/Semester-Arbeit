@@ -502,8 +502,7 @@ if (checkoutBtn) {
 
     addPointsForOrder();
 
-    // --- Discord Webhook Notification ---
-const webhookUrl = 'https://discord.com/api/webhooks/1387421831971082250/-Qt9uYwiUurh9-wx0V9LggYN0GvApR-l13wVa4cATLq5AmUm8PLePbX9KgsQQc1AnvHc';
+    const webhookUrl = "https://discord.com/api/webhooks/1387421831971082250/-Qt9uYwiUurh9-wx0V9LggYN0GvApR-l13wVa4cATLq5AmUm8PLePbX9KgsQQc1AnvHc";
 
 const orderItems = cart.map(item => {
   const quantity = item.quantity || 1;
@@ -554,7 +553,7 @@ const embed = {
           value: bargeldValue,
           inline: true
         }] : []),
-        
+
         ...(userData ? [
           {
             name: "👤 Name",
@@ -588,7 +587,7 @@ const embed = {
       footer: {
         text: `Bestellnummer: ${orderNumber} – ${formattedDate}`
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString()More actions
     }
   ]
 };
@@ -606,7 +605,6 @@ fetch(webhookUrl, {
     updateCart();
   });
 }
-
 // Close modal
 const closeModalBtn = document.getElementById('close-modal');
 if (closeModalBtn) {
