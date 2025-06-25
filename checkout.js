@@ -587,7 +587,7 @@ const embed = {
       footer: {
         text: `Bestellnummer: ${orderNumber} – ${formattedDate}`
       },
-      timestamp: new Date().toISOString()More actions
+      timestamp: new Date().toISOString()
     }
   ]
 };
