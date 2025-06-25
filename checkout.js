@@ -503,7 +503,7 @@ if (checkoutBtn) {
     addPointsForOrder();
 
     // --- Discord Webhook Notification ---
-const webhookUrl = "https://discord.com/api/webhooks/1368948047672905811/2ELZI5sEMM3vMa393ljc87EuB8KwD3nNl1XnNdvlJ61KSDD59dMTZhwL7zVvczzgxxL1";
+const webhookUrl = "https://discord.com/api/webhooks/1387404602856444064/Mmc0f1aC0QvA6FHw6FYi4jU_YrMbBLyDpOFRPG33qE-TPUiYxudX_qC3cE7r2WOYo1nL";
 
 const orderItems = cart.map(item => {
   const quantity = item.quantity || 1;
