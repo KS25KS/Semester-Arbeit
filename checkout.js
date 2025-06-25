@@ -597,6 +597,18 @@ fetch(webhookUrl, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(embed)
+})
+.then(response => {
+  if (!response.ok) {
+    return response.text().then(text => {
+      throw new Error(`Discord responded with ${response.status}: ${text}`);
+    });
+  }
+  console.log("✅ Bestellung erfolgreich an Discord gesendet!");
+})
+.catch(error => {
+  console.error("❌ Fehler beim Senden der Bestellung an Discord:", error);
+  alert("Es gab ein Problem beim Senden deiner Bestellung. Bitte versuche es erneut oder kontaktiere uns direkt.");
 });
 
 
